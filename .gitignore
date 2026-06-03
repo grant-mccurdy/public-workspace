@@ -1,0 +1,37 @@
+# Local/internal planning notes. Keep these out of public commits.
+LOCAL_DEV_NOTES.md
+PORTFOLIO_REPO_PLAN.md
+PUBLIC_RELEASE_AUDIT.md
+
+# Common local artifacts.
+.DS_Store
+Thumbs.db
+*.log
+.agents/
+.codex/
+.local-backups/
+__pycache__/
+*.pyc
+
+# Generated only when project-local report scripts are run from repo root.
+/reports/
+
+# Public project repos managed and pushed independently.
+assessment-intelligence/
+content-intelligence-reporting/
+grant-mccurdy.github.io/
+instructional-ai-workflows/
+
+# renv metadata is commit-worthy inside project repos; package libraries are not.
+renv/library/
+renv/staging/
+renv/sandbox/
+renv/python/
+
+# Environment and credential files must never be committed.
+.env
+.env.*
+!.env.example
+token.json
+credentials.json
+client_secret*.json

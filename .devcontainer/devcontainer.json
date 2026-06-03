@@ -1,0 +1,32 @@
+{
+  "name": "public-portfolio-r-toolchain",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "REditorSupport.r",
+        "quarto.quarto",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-renderers",
+        "ms-toolsai.jupyter-keymap",
+        "ms-vscode.live-server",
+        "GitHub.copilot"
+      ],
+      "settings": {
+        "r.rterm.linux": "/usr/bin/R",
+        "r.bracketedPaste": true,
+        "r.lsp.enabled": true,
+        "r.plot.useHttpgd": true,
+        "files.associations": {
+          "*.R": "r",
+          "*.Rmd": "rmd",
+          "*.qmd": "quarto"
+        }
+      }
+    }
+  },
+  "postCreateCommand": "Rscript tools/r/bootstrap-workspace.R"
+}
