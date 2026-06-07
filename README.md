@@ -9,7 +9,7 @@ it does not own those child repo contents.
 ```text
 public/
 ├── grant-mccurdy.github.io/        # GitHub Pages front door
-├── synthetic-math-department/      # synthetic education data foundation
+├── synthetic-education-data/      # synthetic education data foundation
 ├── assessment-intelligence/        # analytics, dashboards, diagnostics, reports
 ├── instructional-ai-workflows/     # teacher-controlled AI workflow demos
 ├── content-intelligence-reporting/ # source-grounded corpus/report pipeline

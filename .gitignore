@@ -21,7 +21,7 @@ assessment-intelligence/
 content-intelligence-reporting/
 grant-mccurdy.github.io/
 instructional-ai-workflows/
-synthetic-math-department/
+synthetic-education-data/
 
 # renv metadata is commit-worthy inside project repos; package libraries are not.
 renv/library/

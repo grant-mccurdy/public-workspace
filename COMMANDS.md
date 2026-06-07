@@ -15,7 +15,7 @@ git status --short --branch
 
 for repo in \
   grant-mccurdy.github.io \
-  synthetic-math-department \
+  synthetic-education-data \
   assessment-intelligence \
   instructional-ai-workflows \
   content-intelligence-reporting
@@ -27,7 +27,7 @@ done
 ## Project Checks
 
 ```bash
-make -C synthetic-math-department all
+make -C synthetic-education-data all
 make -C content-intelligence-reporting all
 make -C instructional-ai-workflows all
 make -C assessment-intelligence all
