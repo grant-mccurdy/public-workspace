@@ -1,6 +1,6 @@
 # Public Portfolio Strategy
 
-This workspace stages a public GitHub portfolio around three focused project areas plus a GitHub Pages front door.
+This workspace stages a public GitHub portfolio around four focused project areas plus a GitHub Pages front door.
 
 The portfolio should present work at the intersection of mathematics, statistics, education, assessment, analytics, AI workflows, and software. It should not read as a private school operations folder or as a Canvas-only developer portfolio.
 
@@ -9,6 +9,7 @@ The portfolio should present work at the intersection of mathematics, statistics
 ```text
 public/
 ├── grant-mccurdy.github.io/
+├── synthetic-math-department/
 ├── assessment-intelligence/
 ├── instructional-ai-workflows/
 ├── content-intelligence-reporting/
@@ -20,9 +21,16 @@ present and link to the project work in this workspace.
 
 ## Project Areas
 
+### Synthetic Math Department
+
+Privacy-preserving synthetic education data generation and validation for
+assessment analytics, dashboard development, and learning-systems prototyping.
+
 ### Assessment Intelligence
 
-Public-safe assessment system work: synthetic assessment data, reproducible processing, dashboarding, and decision-support reporting for mathematics programs.
+Public-safe assessment system work: analytics, reproducible processing,
+dashboarding, diagnostics, and decision-support reporting for mathematics
+programs.
 
 ### Instructional AI Workflows
 
@@ -35,7 +43,7 @@ Source-grounded content processing: turn unstructured content into a searchable 
 ### GitHub Pages Front Door
 
 `grant-mccurdy.github.io` is the presentation layer. It should summarize and link
-to the three project areas, not contain all project code.
+to the public project areas, not contain all project code.
 
 ## Public Safety Boundary
 
