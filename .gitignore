@@ -2,6 +2,7 @@
 LOCAL_DEV_NOTES.md
 PORTFOLIO_REPO_PLAN.md
 PUBLIC_RELEASE_AUDIT.md
+AGENTS.md
 
 # Common local artifacts.
 .DS_Store
@@ -9,25 +10,16 @@ Thumbs.db
 *.log
 .agents/
 .codex/
-.local-backups/
-__pycache__/
-*.pyc
 
-# Generated only when project-local report scripts are run from repo root.
-/reports/
-
-# Public project repos managed and pushed independently.
+# Child project repos are independent portfolio artifacts.
+# The public wrapper repo tracks workspace docs/tools, not child repo contents.
 assessment-intelligence/
-content-intelligence-reporting/
+content-intelligence/
 grant-mccurdy.github.io/
 instructional-ai-workflows/
 synthetic-education-data/
-
-# renv metadata is commit-worthy inside project repos; package libraries are not.
-renv/library/
-renv/staging/
-renv/sandbox/
-renv/python/
+renv/
+reports/
 
 # Environment and credential files must never be committed.
 .env

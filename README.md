@@ -12,7 +12,7 @@ public/
 ├── synthetic-education-data/      # synthetic education data foundation
 ├── assessment-intelligence/        # analytics, dashboards, diagnostics, reports
 ├── instructional-ai-workflows/     # teacher-controlled AI workflow demos
-├── content-intelligence-reporting/ # source-grounded corpus/report pipeline
+├── content-intelligence/           # source-grounded corpus/report pipeline
 ├── docs/                          # shared public release/toolchain guidance
 └── tools/                         # shared local helper scripts
 ```

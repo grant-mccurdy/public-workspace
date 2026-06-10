@@ -18,7 +18,7 @@ for repo in \
   synthetic-education-data \
   assessment-intelligence \
   instructional-ai-workflows \
-  content-intelligence-reporting
+  content-intelligence
 do
   git -C "$repo" status --short --branch
 done
@@ -28,7 +28,7 @@ done
 
 ```bash
 make -C synthetic-education-data all
-make -C content-intelligence-reporting all
+make -C content-intelligence all
 make -C instructional-ai-workflows all
 make -C assessment-intelligence all
 make -C grant-mccurdy.github.io check
