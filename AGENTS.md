@@ -91,6 +91,41 @@ Lessons Learned
 inspect -> plan -> build -> verify -> summarize -> recommend next portfolio-improving action
 ```
 
+## GitHub Workflow for Public Portfolio Repos
+
+Use a branch-and-PR workflow for substantive public portfolio work.
+
+Substantive work includes:
+- source code
+- data files
+- generated HTML, PDF, screenshots, plots, reports, or dashboards
+- public-facing case studies
+- demos
+- automation
+- dependency or configuration changes
+
+Direct-to-main is acceptable only for tiny, low-risk docs-only edits when explicitly approved.
+
+Before proposing any public commit or push:
+- run `git status --short --branch`
+- identify changed files by category
+- run available validation, such as `make all`, tests, linters, or site checks
+- review staged files for secrets, private data, unsupported claims, and generated artifacts
+
+Public PRs should act as review packets and include:
+- summary of the portfolio value
+- files included and excluded
+- validation run
+- public-readiness assessment
+- confirmation that data is synthetic, anonymized, aggregate-safe, or permission-safe
+- generated-output review when screenshots, reports, dashboards, HTML, PDFs, or plots are included
+
+Prefer focused commits:
+- `feat(portfolio): add assessment case study`
+- `fix(site): update project links`
+- `docs(project): clarify synthetic data workflow`
+- `chore(repo): tighten generated artifact ignores`
+
 ## Priority Order
 
 1. Portfolio-ready projects
