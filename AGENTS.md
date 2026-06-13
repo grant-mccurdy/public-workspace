@@ -112,6 +112,12 @@ Before proposing any public commit or push:
 - run available validation, such as `make all`, tests, linters, or site checks
 - review staged files for secrets, private data, unsupported claims, and generated artifacts
 
+Use GitHub issues as task packets for substantive public work:
+- `gh issue create` to define the task, acceptance checks, and public-release risks.
+- `gh issue view <number>` before starting implementation.
+- `gh issue comment <number>` to record decisions or deferred follow-up.
+- `gh issue close <number>` after the PR merges or the task is abandoned.
+
 Public PRs should act as review packets and include:
 - summary of the portfolio value
 - files included and excluded
@@ -119,6 +125,13 @@ Public PRs should act as review packets and include:
 - public-readiness assessment
 - confirmation that data is synthetic, anonymized, aggregate-safe, or permission-safe
 - generated-output review when screenshots, reports, dashboards, HTML, PDFs, or plots are included
+
+Public code review should be explicit before merge:
+- `gh pr diff <number>` to inspect the public-facing patch.
+- `gh pr checks <number>` to inspect CI or validation status when checks exist.
+- `gh pr review <number> --comment` to record review notes.
+- `gh pr review <number> --approve` only after validation and public-readiness checks are acceptable.
+- `gh pr merge <number>` only after review is recorded.
 
 Prefer focused commits:
 - `feat(portfolio): add assessment case study`
