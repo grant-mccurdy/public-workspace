@@ -14,13 +14,15 @@ Thumbs.db
 # Child project repos are independent portfolio artifacts.
 # The public wrapper repo tracks workspace docs/tools, not child repo contents.
 assessment-intelligence/
-assessment-to-remediation-pipeline/
 content-intelligence/
 grant-mccurdy.github.io/
 instructional-ai-workflows/
 synthetic-education-data/
 renv/
 reports/
+!assessment-to-remediation-pipeline/AGENTS.md
+!assessment-to-remediation-pipeline/reports/
+!assessment-to-remediation-pipeline/reports/**
 
 # Environment and credential files must never be committed.
 .env

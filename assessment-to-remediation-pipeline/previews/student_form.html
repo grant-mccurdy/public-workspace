@@ -1,0 +1,1140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAT Math Readiness Diagnostic Prototype Student Preview</title>
+  <style>
+:root {
+  --border: #d9e2ec;
+  --ink: #1f2933;
+  --muted: #52606d;
+  --panel: #f8fafc;
+  --blue: #243b53;
+  --blue-soft: #eef2ff;
+  --green-soft: #f0fdf4;
+  --green-border: #bbf7d0;
+  --orange-soft: #fff7ed;
+  --orange-border: #fed7aa;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Aptos, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, #f8fafc 0, #ffffff 22rem),
+    repeating-linear-gradient(135deg, rgba(36, 59, 83, 0.035) 0 1px, transparent 1px 18px);
+}
+main { max-width: 1040px; margin: 0 auto; padding: 28px 24px 48px; }
+h1, h2, h3, h4 {
+  font-family: Charter, "Iowan Old Style", Georgia, serif;
+  line-height: 1.2;
+  margin-top: 0;
+}
+h1 { font-size: 2rem; margin-bottom: 0.75rem; }
+h2 { font-size: 1.45rem; }
+h3 { font-size: 1.05rem; }
+.notice, .instructions, .summary-panel {
+  border: 1px solid #c7d2fe;
+  background: var(--blue-soft);
+  padding: 0.9rem;
+  border-radius: 6px;
+  margin: 0.85rem 0;
+}
+.draft-banner {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  padding: 0.65rem 0.8rem;
+  border-radius: 6px;
+  font-weight: 700;
+}
+.module-nav, .item-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1rem 0;
+}
+.module-nav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  padding: 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 24px rgba(16, 42, 67, 0.08);
+}
+.module-nav a, .item-nav a {
+  color: #102a43;
+  border: 1px solid #bcccdc;
+  background: #ffffff;
+  padding: 0.35rem 0.55rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.progress-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+.progress-stat {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #ffffff;
+  padding: 0.75rem;
+}
+.progress-stat strong {
+  display: block;
+  font-size: 1.35rem;
+}
+.module-back {
+  color: #102a43;
+  font-size: 0.88rem;
+}
+.module {
+  border-top: 2px solid var(--blue);
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+.module-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+.module-meta {
+  color: var(--muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+.item {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  background: #ffffff;
+}
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-bottom: 0.65rem;
+}
+.meta { color: var(--muted); font-size: 0.9rem; margin: 0; }
+.item-id { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+.choices { border: 0; margin: 0.8rem 0 0; padding: 0; }
+.choice {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.6rem;
+  margin: 0.5rem 0;
+  background: #ffffff;
+}
+.choice input { margin-top: 0.2rem; }
+.choice-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid #9fb3c8;
+  border-radius: 50%;
+  margin-right: 0.45rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.choice-text { display: inline; }
+.numeric-guidance { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.45rem; }
+.answer-box {
+  border: 1px solid #9fb3c8;
+  border-radius: 5px;
+  height: 2.7rem;
+  width: min(100%, 26rem);
+  background: #ffffff;
+}
+.math-expr, .frac, .math-radical { white-space: nowrap; }
+.frac {
+  display: inline-grid;
+  grid-template-rows: auto auto;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 1;
+  min-width: 1.1em;
+}
+.frac span:first-child {
+  border-bottom: 1px solid currentColor;
+  padding: 0 0.08em 0.05em;
+}
+.frac span:last-child { padding-top: 0.05em; }
+.key {
+  background: var(--green-soft);
+  border: 1px solid var(--green-border);
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-top: 0.75rem;
+}
+.feedback {
+  background: var(--orange-soft);
+  border: 1px solid var(--orange-border);
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-top: 0.75rem;
+}
+.review-detail {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-top: 0.85rem;
+  background: #ffffff;
+}
+.review-detail summary {
+  cursor: pointer;
+  padding: 0.75rem;
+  font-weight: 700;
+}
+.review-detail summary span {
+  color: var(--muted);
+  display: inline-block;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+.review-detail[open] summary { border-bottom: 1px solid var(--border); }
+.review-detail .key, .review-detail .feedback {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  margin: 0;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.8rem;
+}
+.summary-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.75rem;
+}
+.summary-card h3 { margin-bottom: 0.4rem; }
+.summary-card ul { margin: 0; padding-left: 1.1rem; }
+table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; }
+th, td { border: 1px solid var(--border); padding: 0.45rem; text-align: left; vertical-align: top; }
+th { background: #f1f5f9; }
+code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 3px; }
+@media (max-width: 560px) {
+  main { padding: 18px 12px 36px; }
+  h1 { font-size: 1.45rem; }
+  .module-nav { top: 0; }
+  .module-nav a, .item-nav a { min-height: 2.25rem; display: inline-flex; align-items: center; }
+  .module-header, .item-header { display: block; }
+  .item { padding: 0.85rem; }
+  .choice { grid-template-columns: 1fr; gap: 0.35rem; }
+  .choice input { display: none; }
+  .choice-label { margin-right: 0.35rem; }
+  th, td { font-size: 0.9rem; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<h1>SAT Math Readiness Diagnostic Prototype</h1>
+<p class="notice">Public-safe student preview. This artifact contains original draft items only and does not include answer keys, student data, LMS identifiers, or live API calls.</p>
+<p class="draft-banner">Draft preview for review only. This is the 60-minute scaled MVP form, not a validated standardized test or live Canvas quiz.</p>
+<section class="instructions" aria-labelledby="student-instructions">
+  <h2 id="student-instructions">Instructions</h2>
+  <p>Total time: 60 minutes. Complete Module 1 and Module 2 as separate 30-minute sections unless a reviewer gives different local directions.</p>
+  <p>Multiple-choice questions show four labeled choices. Numeric response questions ask for a number; enter exact values unless the question indicates rounding.</p>
+  <p>Calculator policy for this static prototype is calculator-permitted by default. Future item metadata may flag local no-calculator review items.</p>
+</section>
+<section class="progress-strip" aria-label="Form overview">
+  <div class="progress-stat"><strong>36</strong><span>Total items</span></div>
+  <div class="progress-stat"><strong>60</strong><span>Minutes</span></div>
+  <div class="progress-stat"><strong>27</strong><span>Multiple choice</span></div>
+  <div class="progress-stat"><strong>9</strong><span>Numeric response</span></div>
+</section>
+<nav class="module-nav" aria-label="Module navigation">
+  <a href="#student-instructions">Overview</a>
+  <a href="#module-1">Module 1</a>
+  <a href="#module-2">Module 2</a>
+</nav>
+<section class="module" id="module-1"><div class="module-header"><div><h2>Module 1</h2><p class="module-meta">Time: 30 minutes. Items: 18.</p></div><p class="module-meta"><a class="module-back" href="#student-instructions">Back to overview</a></p></div>
+<section class="item" id="module-1-item-1">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 1 of 18 | Algebra</p>
+    <p class="item-id">ITEM-001</p>
+  </div>
+  <p>If 3x + 5 = 20, what is the value of x?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-001-A">
+  <input id="ITEM-001-A" name="ITEM-001" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">5</span></span>
+</label>
+
+<label class="choice" for="ITEM-001-B">
+  <input id="ITEM-001-B" name="ITEM-001" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">15</span></span>
+</label>
+
+<label class="choice" for="ITEM-001-C">
+  <input id="ITEM-001-C" name="ITEM-001" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text"><span class="frac"><span>25</span><span>3</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-001-D">
+  <input id="ITEM-001-D" name="ITEM-001" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">-5</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-1-item-2">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 2 of 18 | Algebra</p>
+    <p class="item-id">ITEM-002</p>
+  </div>
+  <p>The equation 2y - 4x = 10 represents a line. What is the slope of the line?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-002-A">
+  <input id="ITEM-002-A" name="ITEM-002" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">2</span></span>
+</label>
+
+<label class="choice" for="ITEM-002-B">
+  <input id="ITEM-002-B" name="ITEM-002" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">-2</span></span>
+</label>
+
+<label class="choice" for="ITEM-002-C">
+  <input id="ITEM-002-C" name="ITEM-002" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">4</span></span>
+</label>
+
+<label class="choice" for="ITEM-002-D">
+  <input id="ITEM-002-D" name="ITEM-002" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">5</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-1-item-3">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 3 of 18 | Problem-Solving and Data Analysis</p>
+    <p class="item-id">ITEM-003</p>
+  </div>
+  <p>A train travels 144 miles in 3 hours at a constant speed. What is the speed, in miles per hour?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-003-A">
+  <input id="ITEM-003-A" name="ITEM-003" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">36</span></span>
+</label>
+
+<label class="choice" for="ITEM-003-B">
+  <input id="ITEM-003-B" name="ITEM-003" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">48</span></span>
+</label>
+
+<label class="choice" for="ITEM-003-C">
+  <input id="ITEM-003-C" name="ITEM-003" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">141</span></span>
+</label>
+
+<label class="choice" for="ITEM-003-D">
+  <input id="ITEM-003-D" name="ITEM-003" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">432</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-1-item-4">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 4 of 18 | Geometry and Trigonometry</p>
+    <p class="item-id">ITEM-004</p>
+  </div>
+  <p>A triangle has base 14 units and height 9 units. What is its area, in square units?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-004-A">
+  <input id="ITEM-004-A" name="ITEM-004" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">23</span></span>
+</label>
+
+<label class="choice" for="ITEM-004-B">
+  <input id="ITEM-004-B" name="ITEM-004" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">63</span></span>
+</label>
+
+<label class="choice" for="ITEM-004-C">
+  <input id="ITEM-004-C" name="ITEM-004" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">126</span></span>
+</label>
+
+<label class="choice" for="ITEM-004-D">
+  <input id="ITEM-004-D" name="ITEM-004" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">196</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-1-item-5">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 5 of 18 | Algebra</p>
+    <p class="item-id">ITEM-005</p>
+  </div>
+  <p>Which inequality is equivalent to 5 - 2x &gt; 13?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-005-A">
+  <input id="ITEM-005-A" name="ITEM-005" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">x &gt; -4</span></span>
+</label>
+
+<label class="choice" for="ITEM-005-B">
+  <input id="ITEM-005-B" name="ITEM-005" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">x &lt; -4</span></span>
+</label>
+
+<label class="choice" for="ITEM-005-C">
+  <input id="ITEM-005-C" name="ITEM-005" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">x &gt; 4</span></span>
+</label>
+
+<label class="choice" for="ITEM-005-D">
+  <input id="ITEM-005-D" name="ITEM-005" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">x &lt; 4</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-1-item-6">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 6 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-006</p>
+  </div>
+  <p>For x not equal to 3, which expression is equivalent to (x<sup>2</sup> - 9)/(x - 3)?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-006-A">
+  <input id="ITEM-006-A" name="ITEM-006" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">x - 3</span></span>
+</label>
+
+<label class="choice" for="ITEM-006-B">
+  <input id="ITEM-006-B" name="ITEM-006" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">x + 3</span></span>
+</label>
+
+<label class="choice" for="ITEM-006-C">
+  <input id="ITEM-006-C" name="ITEM-006" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">x<sup>2</sup> + 3</span></span>
+</label>
+
+<label class="choice" for="ITEM-006-D">
+  <input id="ITEM-006-D" name="ITEM-006" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">1/(x + 3)</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-1-item-7">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 7 of 18 | Algebra</p>
+    <p class="item-id">ITEM-007</p>
+  </div>
+  <p>If x + y = 11 and x - y = 3, what is the value of x?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-007-A">
+  <input id="ITEM-007-A" name="ITEM-007" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">4</span></span>
+</label>
+
+<label class="choice" for="ITEM-007-B">
+  <input id="ITEM-007-B" name="ITEM-007" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">7</span></span>
+</label>
+
+<label class="choice" for="ITEM-007-C">
+  <input id="ITEM-007-C" name="ITEM-007" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">8</span></span>
+</label>
+
+<label class="choice" for="ITEM-007-D">
+  <input id="ITEM-007-D" name="ITEM-007" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">14</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-1-item-8">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 8 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-008</p>
+  </div>
+  <p>If f(x) = x<sup>2</sup> - 4x, what is f(6)?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-008-A">
+  <input id="ITEM-008-A" name="ITEM-008" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">4</span></span>
+</label>
+
+<label class="choice" for="ITEM-008-B">
+  <input id="ITEM-008-B" name="ITEM-008" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">12</span></span>
+</label>
+
+<label class="choice" for="ITEM-008-C">
+  <input id="ITEM-008-C" name="ITEM-008" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">20</span></span>
+</label>
+
+<label class="choice" for="ITEM-008-D">
+  <input id="ITEM-008-D" name="ITEM-008" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">36</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-1-item-9">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 9 of 18 | Problem-Solving and Data Analysis</p>
+    <p class="item-id">ITEM-009</p>
+  </div>
+  <p>A price of $80 is increased by 15%. What is the new price?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-009-A">
+  <input id="ITEM-009-A" name="ITEM-009" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">$12</span></span>
+</label>
+
+<label class="choice" for="ITEM-009-B">
+  <input id="ITEM-009-B" name="ITEM-009" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">$68</span></span>
+</label>
+
+<label class="choice" for="ITEM-009-C">
+  <input id="ITEM-009-C" name="ITEM-009" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">$92</span></span>
+</label>
+
+<label class="choice" for="ITEM-009-D">
+  <input id="ITEM-009-D" name="ITEM-009" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">$95</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-1-item-10">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 10 of 18 | Algebra</p>
+    <p class="item-id">ITEM-010</p>
+  </div>
+  <p>The line y = 3x - 7 passes through the point (k, 8). What is the value of k?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+</section>
+
+<section class="item" id="module-1-item-11">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 11 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-011</p>
+  </div>
+  <p>What is the smaller solution to x<sup>2</sup> - 5x + 6 = 0?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-011-A">
+  <input id="ITEM-011-A" name="ITEM-011" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">1</span></span>
+</label>
+
+<label class="choice" for="ITEM-011-B">
+  <input id="ITEM-011-B" name="ITEM-011" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">2</span></span>
+</label>
+
+<label class="choice" for="ITEM-011-C">
+  <input id="ITEM-011-C" name="ITEM-011" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">3</span></span>
+</label>
+
+<label class="choice" for="ITEM-011-D">
+  <input id="ITEM-011-D" name="ITEM-011" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">6</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-1-item-12">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 12 of 18 | Geometry and Trigonometry</p>
+    <p class="item-id">ITEM-012</p>
+  </div>
+  <p>A right triangle has legs of lengths 9 and 12. What is the length of the hypotenuse?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+</section>
+
+<section class="item" id="module-1-item-13">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 13 of 18 | Algebra</p>
+    <p class="item-id">ITEM-013</p>
+  </div>
+  <p>A line passes through (2, 7) and (5, 19). What is the slope of the line?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-013-A">
+  <input id="ITEM-013-A" name="ITEM-013" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">3</span></span>
+</label>
+
+<label class="choice" for="ITEM-013-B">
+  <input id="ITEM-013-B" name="ITEM-013" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">4</span></span>
+</label>
+
+<label class="choice" for="ITEM-013-C">
+  <input id="ITEM-013-C" name="ITEM-013" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">6</span></span>
+</label>
+
+<label class="choice" for="ITEM-013-D">
+  <input id="ITEM-013-D" name="ITEM-013" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">12</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-1-item-14">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 14 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-014</p>
+  </div>
+  <p>If h(x) = 2x<sup>2</sup> + 3x - 5, which expression is equivalent to h(x + 1) - h(x)?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-014-A">
+  <input id="ITEM-014-A" name="ITEM-014" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">4x + 5</span></span>
+</label>
+
+<label class="choice" for="ITEM-014-B">
+  <input id="ITEM-014-B" name="ITEM-014" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">4x + 1</span></span>
+</label>
+
+<label class="choice" for="ITEM-014-C">
+  <input id="ITEM-014-C" name="ITEM-014" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">2x + 3</span></span>
+</label>
+
+<label class="choice" for="ITEM-014-D">
+  <input id="ITEM-014-D" name="ITEM-014" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">2x<sup>2</sup> + 7x</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-1-item-15">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 15 of 18 | Problem-Solving and Data Analysis</p>
+    <p class="item-id">ITEM-015</p>
+  </div>
+  <p>Six numbers have a mean of 18. When the largest number is removed, the mean of the remaining five numbers is 16. What is the largest number?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+</section>
+
+<section class="item" id="module-1-item-16">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 16 of 18 | Algebra</p>
+    <p class="item-id">ITEM-016</p>
+  </div>
+  <p>For what value of a is a(2x - 3) = 10x - 15 true for all values of x?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-016-A">
+  <input id="ITEM-016-A" name="ITEM-016" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">3</span></span>
+</label>
+
+<label class="choice" for="ITEM-016-B">
+  <input id="ITEM-016-B" name="ITEM-016" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">5</span></span>
+</label>
+
+<label class="choice" for="ITEM-016-C">
+  <input id="ITEM-016-C" name="ITEM-016" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">10</span></span>
+</label>
+
+<label class="choice" for="ITEM-016-D">
+  <input id="ITEM-016-D" name="ITEM-016" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">15</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-1-item-17">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 17 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-017</p>
+  </div>
+  <p>If <span class="math-radical">&radic;(3x + 1)</span> = 5, what is the value of x?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+</section>
+
+<section class="item" id="module-1-item-18">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 18 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-018</p>
+  </div>
+  <p>For which values of x is the expression 1/(x<sup>2</sup> - 4x) undefined?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-018-A">
+  <input id="ITEM-018-A" name="ITEM-018" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">0 only</span></span>
+</label>
+
+<label class="choice" for="ITEM-018-B">
+  <input id="ITEM-018-B" name="ITEM-018" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">4 only</span></span>
+</label>
+
+<label class="choice" for="ITEM-018-C">
+  <input id="ITEM-018-C" name="ITEM-018" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">0 and 4</span></span>
+</label>
+
+<label class="choice" for="ITEM-018-D">
+  <input id="ITEM-018-D" name="ITEM-018" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">-4 and 4</span></span>
+</label>
+</fieldset>
+</section>
+</section><section class="module" id="module-2"><div class="module-header"><div><h2>Module 2</h2><p class="module-meta">Time: 30 minutes. Items: 18.</p></div><p class="module-meta"><a class="module-back" href="#student-instructions">Back to overview</a></p></div>
+<section class="item" id="module-2-item-1">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 1 of 18 | Algebra</p>
+    <p class="item-id">ITEM-019</p>
+  </div>
+  <p>If 4x - 9 = 2x + 7, what is the value of x?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-019-A">
+  <input id="ITEM-019-A" name="ITEM-019" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">2</span></span>
+</label>
+
+<label class="choice" for="ITEM-019-B">
+  <input id="ITEM-019-B" name="ITEM-019" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">4</span></span>
+</label>
+
+<label class="choice" for="ITEM-019-C">
+  <input id="ITEM-019-C" name="ITEM-019" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">8</span></span>
+</label>
+
+<label class="choice" for="ITEM-019-D">
+  <input id="ITEM-019-D" name="ITEM-019" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">16</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-2-item-2">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 2 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-020</p>
+  </div>
+  <p>Which expression is equivalent to (2x<sup>3</sup>)(3x<sup>2</sup>)?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-020-A">
+  <input id="ITEM-020-A" name="ITEM-020" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">5x<sup>5</sup></span></span>
+</label>
+
+<label class="choice" for="ITEM-020-B">
+  <input id="ITEM-020-B" name="ITEM-020" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">6x<sup>5</sup></span></span>
+</label>
+
+<label class="choice" for="ITEM-020-C">
+  <input id="ITEM-020-C" name="ITEM-020" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">6x<sup>6</sup></span></span>
+</label>
+
+<label class="choice" for="ITEM-020-D">
+  <input id="ITEM-020-D" name="ITEM-020" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">12x<sup>5</sup></span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-2-item-3">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 3 of 18 | Problem-Solving and Data Analysis</p>
+    <p class="item-id">ITEM-021</p>
+  </div>
+  <p>A bag contains 5 red tiles, 3 blue tiles, and 2 green tiles. If one tile is selected at random, what is the probability that it is not blue?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-021-A">
+  <input id="ITEM-021-A" name="ITEM-021" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text"><span class="frac"><span>3</span><span>10</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-021-B">
+  <input id="ITEM-021-B" name="ITEM-021" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text"><span class="frac"><span>7</span><span>10</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-021-C">
+  <input id="ITEM-021-C" name="ITEM-021" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text"><span class="frac"><span>2</span><span>7</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-021-D">
+  <input id="ITEM-021-D" name="ITEM-021" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text"><span class="frac"><span>7</span><span>3</span></span></span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-2-item-4">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 4 of 18 | Geometry and Trigonometry</p>
+    <p class="item-id">ITEM-022</p>
+  </div>
+  <p>Two angles of a triangle measure 42 degrees and 68 degrees. What is the measure, in degrees, of the third angle?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-022-A">
+  <input id="ITEM-022-A" name="ITEM-022" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">70</span></span>
+</label>
+
+<label class="choice" for="ITEM-022-B">
+  <input id="ITEM-022-B" name="ITEM-022" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">90</span></span>
+</label>
+
+<label class="choice" for="ITEM-022-C">
+  <input id="ITEM-022-C" name="ITEM-022" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">110</span></span>
+</label>
+
+<label class="choice" for="ITEM-022-D">
+  <input id="ITEM-022-D" name="ITEM-022" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">138</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-2-item-5">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 5 of 18 | Algebra</p>
+    <p class="item-id">ITEM-023</p>
+  </div>
+  <p>What is the y-intercept of the line 3x + 2y = 12?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-023-A">
+  <input id="ITEM-023-A" name="ITEM-023" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">2</span></span>
+</label>
+
+<label class="choice" for="ITEM-023-B">
+  <input id="ITEM-023-B" name="ITEM-023" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">3</span></span>
+</label>
+
+<label class="choice" for="ITEM-023-C">
+  <input id="ITEM-023-C" name="ITEM-023" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">4</span></span>
+</label>
+
+<label class="choice" for="ITEM-023-D">
+  <input id="ITEM-023-D" name="ITEM-023" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">6</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-2-item-6">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 6 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-024</p>
+  </div>
+  <p>The function q(x) = (x - 4)<sup>2</sup> + 7 is graphed in the xy-plane. What is the vertex of the graph?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-024-A">
+  <input id="ITEM-024-A" name="ITEM-024" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">(-4, 7)</span></span>
+</label>
+
+<label class="choice" for="ITEM-024-B">
+  <input id="ITEM-024-B" name="ITEM-024" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">(4, 7)</span></span>
+</label>
+
+<label class="choice" for="ITEM-024-C">
+  <input id="ITEM-024-C" name="ITEM-024" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">(7, 4)</span></span>
+</label>
+
+<label class="choice" for="ITEM-024-D">
+  <input id="ITEM-024-D" name="ITEM-024" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">(4, -7)</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-2-item-7">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 7 of 18 | Algebra</p>
+    <p class="item-id">ITEM-025</p>
+  </div>
+  <p>A line is parallel to y = -3x + 2. What is the slope of the line?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-025-A">
+  <input id="ITEM-025-A" name="ITEM-025" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">-3</span></span>
+</label>
+
+<label class="choice" for="ITEM-025-B">
+  <input id="ITEM-025-B" name="ITEM-025" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text"><span class="frac"><span>-1</span><span>3</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-025-C">
+  <input id="ITEM-025-C" name="ITEM-025" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text"><span class="frac"><span>1</span><span>3</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-025-D">
+  <input id="ITEM-025-D" name="ITEM-025" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">2</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-2-item-8">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 8 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-026</p>
+  </div>
+  <p>If 2<sup>x + 1</sup> = 32, what is the value of x?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+</section>
+
+<section class="item" id="module-2-item-9">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 9 of 18 | Geometry and Trigonometry</p>
+    <p class="item-id">ITEM-027</p>
+  </div>
+  <p>Two similar triangles have corresponding side lengths in the ratio 3:5. If the area of the smaller triangle is 36 square units, what is the area of the larger triangle?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-027-A">
+  <input id="ITEM-027-A" name="ITEM-027" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">60</span></span>
+</label>
+
+<label class="choice" for="ITEM-027-B">
+  <input id="ITEM-027-B" name="ITEM-027" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">144</span></span>
+</label>
+
+<label class="choice" for="ITEM-027-C">
+  <input id="ITEM-027-C" name="ITEM-027" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">100</span></span>
+</label>
+
+<label class="choice" for="ITEM-027-D">
+  <input id="ITEM-027-D" name="ITEM-027" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">180</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-2-item-10">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 10 of 18 | Algebra</p>
+    <p class="item-id">ITEM-028</p>
+  </div>
+  <p>If 0.25x + 6 = 18, what is the value of x?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+</section>
+
+<section class="item" id="module-2-item-11">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 11 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-029</p>
+  </div>
+  <p>Which expression is equivalent to x<sup>2</sup> + 7x + 10?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-029-A">
+  <input id="ITEM-029-A" name="ITEM-029" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">(x + 5)(x + 2)</span></span>
+</label>
+
+<label class="choice" for="ITEM-029-B">
+  <input id="ITEM-029-B" name="ITEM-029" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">(x - 5)(x - 2)</span></span>
+</label>
+
+<label class="choice" for="ITEM-029-C">
+  <input id="ITEM-029-C" name="ITEM-029" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">(x + 10)(x + 1)</span></span>
+</label>
+
+<label class="choice" for="ITEM-029-D">
+  <input id="ITEM-029-D" name="ITEM-029" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">(x + 7)(x + 10)</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-2-item-12">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 12 of 18 | Problem-Solving and Data Analysis</p>
+    <p class="item-id">ITEM-030</p>
+  </div>
+  <p>Thirty percent of n is 45. What is the value of n?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+</section>
+
+<section class="item" id="module-2-item-13">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 13 of 18 | Algebra</p>
+    <p class="item-id">ITEM-031</p>
+  </div>
+  <p>A service charge is modeled by C = 25 + 8h, where C is the total cost in dollars for h hours. What does 8 represent in this model?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-031-A">
+  <input id="ITEM-031-A" name="ITEM-031" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">The fixed cost before any hours are added</span></span>
+</label>
+
+<label class="choice" for="ITEM-031-B">
+  <input id="ITEM-031-B" name="ITEM-031" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">The number of hours purchased</span></span>
+</label>
+
+<label class="choice" for="ITEM-031-C">
+  <input id="ITEM-031-C" name="ITEM-031" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">The cost per hour</span></span>
+</label>
+
+<label class="choice" for="ITEM-031-D">
+  <input id="ITEM-031-D" name="ITEM-031" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">The total cost for 8 hours</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-2-item-14">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 14 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-032</p>
+  </div>
+  <p>What are the solutions to |x - 2| = 5?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-032-A">
+  <input id="ITEM-032-A" name="ITEM-032" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">-3 and 7</span></span>
+</label>
+
+<label class="choice" for="ITEM-032-B">
+  <input id="ITEM-032-B" name="ITEM-032" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">3 and 7</span></span>
+</label>
+
+<label class="choice" for="ITEM-032-C">
+  <input id="ITEM-032-C" name="ITEM-032" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">-7 and 3</span></span>
+</label>
+
+<label class="choice" for="ITEM-032-D">
+  <input id="ITEM-032-D" name="ITEM-032" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">7 only</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-2-item-15">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 15 of 18 | Geometry and Trigonometry</p>
+    <p class="item-id">ITEM-033</p>
+  </div>
+  <p>In a right triangle, sin(<span class="math-expr">&theta;</span>) = <span class="frac"><span>3</span><span>5</span></span> and the hypotenuse has length 20. What is the length of the leg adjacent to <span class="math-expr">&theta;</span>?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+</section>
+
+<section class="item" id="module-2-item-16">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 16 of 18 | Algebra</p>
+    <p class="item-id">ITEM-034</p>
+  </div>
+  <p>Which inequality is equivalent to 2(x - 3) &le; 10?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-034-A">
+  <input id="ITEM-034-A" name="ITEM-034" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">x &le; 2</span></span>
+</label>
+
+<label class="choice" for="ITEM-034-B">
+  <input id="ITEM-034-B" name="ITEM-034" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">x &le; 8</span></span>
+</label>
+
+<label class="choice" for="ITEM-034-C">
+  <input id="ITEM-034-C" name="ITEM-034" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">x &ge; 8</span></span>
+</label>
+
+<label class="choice" for="ITEM-034-D">
+  <input id="ITEM-034-D" name="ITEM-034" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">x &le; 13</span></span>
+</label>
+</fieldset>
+</section>
+
+<section class="item" id="module-2-item-17">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 17 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-035</p>
+  </div>
+  <p>If f(x) = x<sup>2</sup> + 2 and g(x) = 3x - 1, what is f(g(2))?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+</section>
+
+<section class="item" id="module-2-item-18">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 18 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-036</p>
+  </div>
+  <p>If (x + 2)/(x - 1) = 3 and x is not equal to 1, what is the value of x?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-036-A">
+  <input id="ITEM-036-A" name="ITEM-036" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text"><span class="frac"><span>2</span><span>5</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-036-B">
+  <input id="ITEM-036-B" name="ITEM-036" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text"><span class="frac"><span>5</span><span>2</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-036-C">
+  <input id="ITEM-036-C" name="ITEM-036" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text"><span class="frac"><span>-5</span><span>2</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-036-D">
+  <input id="ITEM-036-D" name="ITEM-036" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">5</span></span>
+</label>
+</fieldset>
+</section>
+</section>
+</main>
+</body>
+</html>

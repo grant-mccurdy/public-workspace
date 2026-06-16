@@ -1,0 +1,1786 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAT Math Readiness Diagnostic Prototype Instructor Review</title>
+  <style>
+:root {
+  --border: #d9e2ec;
+  --ink: #1f2933;
+  --muted: #52606d;
+  --panel: #f8fafc;
+  --blue: #243b53;
+  --blue-soft: #eef2ff;
+  --green-soft: #f0fdf4;
+  --green-border: #bbf7d0;
+  --orange-soft: #fff7ed;
+  --orange-border: #fed7aa;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Aptos, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, #f8fafc 0, #ffffff 22rem),
+    repeating-linear-gradient(135deg, rgba(36, 59, 83, 0.035) 0 1px, transparent 1px 18px);
+}
+main { max-width: 1040px; margin: 0 auto; padding: 28px 24px 48px; }
+h1, h2, h3, h4 {
+  font-family: Charter, "Iowan Old Style", Georgia, serif;
+  line-height: 1.2;
+  margin-top: 0;
+}
+h1 { font-size: 2rem; margin-bottom: 0.75rem; }
+h2 { font-size: 1.45rem; }
+h3 { font-size: 1.05rem; }
+.notice, .instructions, .summary-panel {
+  border: 1px solid #c7d2fe;
+  background: var(--blue-soft);
+  padding: 0.9rem;
+  border-radius: 6px;
+  margin: 0.85rem 0;
+}
+.draft-banner {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  padding: 0.65rem 0.8rem;
+  border-radius: 6px;
+  font-weight: 700;
+}
+.module-nav, .item-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1rem 0;
+}
+.module-nav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  padding: 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 24px rgba(16, 42, 67, 0.08);
+}
+.module-nav a, .item-nav a {
+  color: #102a43;
+  border: 1px solid #bcccdc;
+  background: #ffffff;
+  padding: 0.35rem 0.55rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.progress-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+.progress-stat {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #ffffff;
+  padding: 0.75rem;
+}
+.progress-stat strong {
+  display: block;
+  font-size: 1.35rem;
+}
+.module-back {
+  color: #102a43;
+  font-size: 0.88rem;
+}
+.module {
+  border-top: 2px solid var(--blue);
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+.module-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+.module-meta {
+  color: var(--muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+.item {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  background: #ffffff;
+}
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-bottom: 0.65rem;
+}
+.meta { color: var(--muted); font-size: 0.9rem; margin: 0; }
+.item-id { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+.choices { border: 0; margin: 0.8rem 0 0; padding: 0; }
+.choice {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.6rem;
+  margin: 0.5rem 0;
+  background: #ffffff;
+}
+.choice input { margin-top: 0.2rem; }
+.choice-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid #9fb3c8;
+  border-radius: 50%;
+  margin-right: 0.45rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.choice-text { display: inline; }
+.numeric-guidance { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.45rem; }
+.answer-box {
+  border: 1px solid #9fb3c8;
+  border-radius: 5px;
+  height: 2.7rem;
+  width: min(100%, 26rem);
+  background: #ffffff;
+}
+.math-expr, .frac, .math-radical { white-space: nowrap; }
+.frac {
+  display: inline-grid;
+  grid-template-rows: auto auto;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 1;
+  min-width: 1.1em;
+}
+.frac span:first-child {
+  border-bottom: 1px solid currentColor;
+  padding: 0 0.08em 0.05em;
+}
+.frac span:last-child { padding-top: 0.05em; }
+.key {
+  background: var(--green-soft);
+  border: 1px solid var(--green-border);
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-top: 0.75rem;
+}
+.feedback {
+  background: var(--orange-soft);
+  border: 1px solid var(--orange-border);
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-top: 0.75rem;
+}
+.review-detail {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-top: 0.85rem;
+  background: #ffffff;
+}
+.review-detail summary {
+  cursor: pointer;
+  padding: 0.75rem;
+  font-weight: 700;
+}
+.review-detail summary span {
+  color: var(--muted);
+  display: inline-block;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+.review-detail[open] summary { border-bottom: 1px solid var(--border); }
+.review-detail .key, .review-detail .feedback {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  margin: 0;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.8rem;
+}
+.summary-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.75rem;
+}
+.summary-card h3 { margin-bottom: 0.4rem; }
+.summary-card ul { margin: 0; padding-left: 1.1rem; }
+table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; }
+th, td { border: 1px solid var(--border); padding: 0.45rem; text-align: left; vertical-align: top; }
+th { background: #f1f5f9; }
+code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 3px; }
+@media (max-width: 560px) {
+  main { padding: 18px 12px 36px; }
+  h1 { font-size: 1.45rem; }
+  .module-nav { top: 0; }
+  .module-nav a, .item-nav a { min-height: 2.25rem; display: inline-flex; align-items: center; }
+  .module-header, .item-header { display: block; }
+  .item { padding: 0.85rem; }
+  .choice { grid-template-columns: 1fr; gap: 0.35rem; }
+  .choice input { display: none; }
+  .choice-label { margin-right: 0.35rem; }
+  th, td { font-size: 0.9rem; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<h1>SAT Math Readiness Diagnostic Prototype Instructor Review</h1>
+<p class="notice">Instructor review preview. Items are eligible for offline Canvas payload export only when deterministic checks, GPT-5.5 item review, and GPT-5.5 visual review gates pass. Current draft source item count: 36.</p>
+<p class="draft-banner">Offline review artifact only. No Canvas upload, LMS mutation, scoring action, or source item status change happens from this page.</p>
+<p>Source policy: official-source research, original items only, offline Canvas payloads only. Timing note: this preview is the 60-minute scaled MVP form based on a 70-minute target assessment structure.</p>
+
+<section class="summary-panel" aria-labelledby="review-dashboard">
+  <h2 id="review-dashboard">Review Dashboard</h2>
+  <p>This instructor preview is offline-only. It supports content review, answer-key checks, distractor feedback review, and public-safety review before any Canvas export.</p>
+  <div class="summary-grid">
+    <section class="summary-card"><h3>Domains</h3><ul><li>Advanced Math: 13</li><li>Algebra: 13</li><li>Geometry and Trigonometry: 5</li><li>Problem-Solving and Data Analysis: 5</li></ul></section>
+    <section class="summary-card"><h3>Item Types</h3><ul><li>multiple_choice: 27</li><li>numeric_student_produced_response: 9</li></ul></section>
+    <section class="summary-card"><h3>Difficulty</h3><ul><li>easy: 12</li><li>hard: 10</li><li>medium: 14</li></ul></section>
+    <section class="summary-card"><h3>Review Status</h3><ul><li>draft: 36</li></ul></section>
+  </div>
+  <h2>Item Navigation</h2>
+  <h3>Module 1</h3><div class="item-nav"><a href="#module-1-item-1">ITEM-001</a><a href="#module-1-item-2">ITEM-002</a><a href="#module-1-item-3">ITEM-003</a><a href="#module-1-item-4">ITEM-004</a><a href="#module-1-item-5">ITEM-005</a><a href="#module-1-item-6">ITEM-006</a><a href="#module-1-item-7">ITEM-007</a><a href="#module-1-item-8">ITEM-008</a><a href="#module-1-item-9">ITEM-009</a><a href="#module-1-item-10">ITEM-010</a><a href="#module-1-item-11">ITEM-011</a><a href="#module-1-item-12">ITEM-012</a><a href="#module-1-item-13">ITEM-013</a><a href="#module-1-item-14">ITEM-014</a><a href="#module-1-item-15">ITEM-015</a><a href="#module-1-item-16">ITEM-016</a><a href="#module-1-item-17">ITEM-017</a><a href="#module-1-item-18">ITEM-018</a></div><h3>Module 2</h3><div class="item-nav"><a href="#module-2-item-1">ITEM-019</a><a href="#module-2-item-2">ITEM-020</a><a href="#module-2-item-3">ITEM-021</a><a href="#module-2-item-4">ITEM-022</a><a href="#module-2-item-5">ITEM-023</a><a href="#module-2-item-6">ITEM-024</a><a href="#module-2-item-7">ITEM-025</a><a href="#module-2-item-8">ITEM-026</a><a href="#module-2-item-9">ITEM-027</a><a href="#module-2-item-10">ITEM-028</a><a href="#module-2-item-11">ITEM-029</a><a href="#module-2-item-12">ITEM-030</a><a href="#module-2-item-13">ITEM-031</a><a href="#module-2-item-14">ITEM-032</a><a href="#module-2-item-15">ITEM-033</a><a href="#module-2-item-16">ITEM-034</a><a href="#module-2-item-17">ITEM-035</a><a href="#module-2-item-18">ITEM-036</a></div>
+</section>
+
+<section class="module" id="module-1"><div class="module-header"><div><h2>Module 1</h2><p class="module-meta">Time: 30 minutes. Items: 18.</p></div><p class="module-meta">Draft review status shown per item.</p></div>
+<section class="item" id="module-1-item-1">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 1 of 18 | Algebra</p>
+    <p class="item-id">ITEM-001</p>
+  </div>
+  <p>If 3x + 5 = 20, what is the value of x?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-001-A">
+  <input id="ITEM-001-A" name="ITEM-001" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">5</span></span>
+</label>
+
+<label class="choice" for="ITEM-001-B">
+  <input id="ITEM-001-B" name="ITEM-001" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">15</span></span>
+</label>
+
+<label class="choice" for="ITEM-001-C">
+  <input id="ITEM-001-C" name="ITEM-001" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text"><span class="frac"><span>25</span><span>3</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-001-D">
+  <input id="ITEM-001-D" name="ITEM-001" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">-5</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer A | Review status draft | Answer Feedback | easy</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> A</p>
+  <p><strong>Explanation:</strong> Subtract 5 from both sides to get 3x = 15, then divide by 3 to get x = 5.</p>
+  <p><strong>Subdomain:</strong> Linear equations in one variable</p>
+  <p><strong>Difficulty:</strong> easy</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> inverse-operation error, sign error</p>
+  <p><strong>Remediation tag:</strong> <code>linear-equation-solving</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>B:</strong> This subtracts 5 but does not divide by 3.</li><li><strong>C:</strong> This adds 5 instead of subtracting 5 before dividing.</li><li><strong>D:</strong> This uses the opposite sign after solving.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-2">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 2 of 18 | Algebra</p>
+    <p class="item-id">ITEM-002</p>
+  </div>
+  <p>The equation 2y - 4x = 10 represents a line. What is the slope of the line?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-002-A">
+  <input id="ITEM-002-A" name="ITEM-002" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">2</span></span>
+</label>
+
+<label class="choice" for="ITEM-002-B">
+  <input id="ITEM-002-B" name="ITEM-002" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">-2</span></span>
+</label>
+
+<label class="choice" for="ITEM-002-C">
+  <input id="ITEM-002-C" name="ITEM-002" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">4</span></span>
+</label>
+
+<label class="choice" for="ITEM-002-D">
+  <input id="ITEM-002-D" name="ITEM-002" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">5</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer A | Review status draft | Answer Feedback | easy</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> A</p>
+  <p><strong>Explanation:</strong> Rewrite as 2y = 4x + 10, then y = 2x + 5. The slope is 2.</p>
+  <p><strong>Subdomain:</strong> Linear equations in two variables</p>
+  <p><strong>Difficulty:</strong> easy</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> slope-intercept confusion, coefficient scaling error</p>
+  <p><strong>Remediation tag:</strong> <code>linear-equation-slope</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>B:</strong> This keeps the sign from -4x instead of solving for y.</li><li><strong>C:</strong> This uses the coefficient of x before dividing by 2.</li><li><strong>D:</strong> This identifies the y-intercept, not the slope.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-3">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 3 of 18 | Problem-Solving and Data Analysis</p>
+    <p class="item-id">ITEM-003</p>
+  </div>
+  <p>A train travels 144 miles in 3 hours at a constant speed. What is the speed, in miles per hour?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-003-A">
+  <input id="ITEM-003-A" name="ITEM-003" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">36</span></span>
+</label>
+
+<label class="choice" for="ITEM-003-B">
+  <input id="ITEM-003-B" name="ITEM-003" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">48</span></span>
+</label>
+
+<label class="choice" for="ITEM-003-C">
+  <input id="ITEM-003-C" name="ITEM-003" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">141</span></span>
+</label>
+
+<label class="choice" for="ITEM-003-D">
+  <input id="ITEM-003-D" name="ITEM-003" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">432</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer B | Review status draft | Answer Feedback | easy</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> B</p>
+  <p><strong>Explanation:</strong> Divide miles by hours: 144 / 3 = 48 miles per hour.</p>
+  <p><strong>Subdomain:</strong> Ratios, rates, proportional relationships, and units</p>
+  <p><strong>Difficulty:</strong> easy</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> unit-rate error</p>
+  <p><strong>Remediation tag:</strong> <code>unit-rate-reasoning</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This divides by 4 rather than by the 3 hours given.</li><li><strong>C:</strong> This subtracts the time from the distance.</li><li><strong>D:</strong> This multiplies distance by time instead of dividing.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-4">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 4 of 18 | Geometry and Trigonometry</p>
+    <p class="item-id">ITEM-004</p>
+  </div>
+  <p>A triangle has base 14 units and height 9 units. What is its area, in square units?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-004-A">
+  <input id="ITEM-004-A" name="ITEM-004" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">23</span></span>
+</label>
+
+<label class="choice" for="ITEM-004-B">
+  <input id="ITEM-004-B" name="ITEM-004" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">63</span></span>
+</label>
+
+<label class="choice" for="ITEM-004-C">
+  <input id="ITEM-004-C" name="ITEM-004" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">126</span></span>
+</label>
+
+<label class="choice" for="ITEM-004-D">
+  <input id="ITEM-004-D" name="ITEM-004" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">196</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer B | Review status draft | Answer Feedback | easy</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> B</p>
+  <p><strong>Explanation:</strong> Triangle area is (<span class="frac"><span>1</span><span>2</span></span>)bh = (<span class="frac"><span>1</span><span>2</span></span>)(14)(9) = 63.</p>
+  <p><strong>Subdomain:</strong> Area and volume formulas</p>
+  <p><strong>Difficulty:</strong> easy</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> formula selection error</p>
+  <p><strong>Remediation tag:</strong> <code>triangle-area</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This adds the base and height instead of using area.</li><li><strong>C:</strong> This multiplies base by height but omits the factor of <span class="frac"><span>1</span><span>2</span></span>.</li><li><strong>D:</strong> This squares the base instead of using both dimensions.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-5">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 5 of 18 | Algebra</p>
+    <p class="item-id">ITEM-005</p>
+  </div>
+  <p>Which inequality is equivalent to 5 - 2x &gt; 13?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-005-A">
+  <input id="ITEM-005-A" name="ITEM-005" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">x &gt; -4</span></span>
+</label>
+
+<label class="choice" for="ITEM-005-B">
+  <input id="ITEM-005-B" name="ITEM-005" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">x &lt; -4</span></span>
+</label>
+
+<label class="choice" for="ITEM-005-C">
+  <input id="ITEM-005-C" name="ITEM-005" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">x &gt; 4</span></span>
+</label>
+
+<label class="choice" for="ITEM-005-D">
+  <input id="ITEM-005-D" name="ITEM-005" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">x &lt; 4</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer B | Review status draft | Answer Feedback | easy</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> B</p>
+  <p><strong>Explanation:</strong> Subtract 5 to get -2x &gt; 8. Dividing by -2 reverses the inequality, so x &lt; -4.</p>
+  <p><strong>Subdomain:</strong> Linear inequalities in one or two variables</p>
+  <p><strong>Difficulty:</strong> easy</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> inequality reversal error, sign error</p>
+  <p><strong>Remediation tag:</strong> <code>linear-inequality-solving</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This does not reverse the inequality when dividing by -2.</li><li><strong>C:</strong> This misses both the negative value and the inequality reversal.</li><li><strong>D:</strong> This reverses the inequality but loses the negative value.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-6">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 6 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-006</p>
+  </div>
+  <p>For x not equal to 3, which expression is equivalent to (x<sup>2</sup> - 9)/(x - 3)?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-006-A">
+  <input id="ITEM-006-A" name="ITEM-006" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">x - 3</span></span>
+</label>
+
+<label class="choice" for="ITEM-006-B">
+  <input id="ITEM-006-B" name="ITEM-006" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">x + 3</span></span>
+</label>
+
+<label class="choice" for="ITEM-006-C">
+  <input id="ITEM-006-C" name="ITEM-006" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">x<sup>2</sup> + 3</span></span>
+</label>
+
+<label class="choice" for="ITEM-006-D">
+  <input id="ITEM-006-D" name="ITEM-006" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">1/(x + 3)</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer B | Review status draft | Answer Feedback | easy</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> B</p>
+  <p><strong>Explanation:</strong> Factor x<sup>2</sup> - 9 as (x - 3)(x + 3). Cancel x - 3 to get x + 3.</p>
+  <p><strong>Subdomain:</strong> Equivalent expressions</p>
+  <p><strong>Difficulty:</strong> easy</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> factoring error, rational-expression error</p>
+  <p><strong>Remediation tag:</strong> <code>equivalent-expressions</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This cancels the wrong factor after factoring the numerator.</li><li><strong>C:</strong> This does not factor the difference of squares.</li><li><strong>D:</strong> This reverses the simplified expression.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-7">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 7 of 18 | Algebra</p>
+    <p class="item-id">ITEM-007</p>
+  </div>
+  <p>If x + y = 11 and x - y = 3, what is the value of x?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-007-A">
+  <input id="ITEM-007-A" name="ITEM-007" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">4</span></span>
+</label>
+
+<label class="choice" for="ITEM-007-B">
+  <input id="ITEM-007-B" name="ITEM-007" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">7</span></span>
+</label>
+
+<label class="choice" for="ITEM-007-C">
+  <input id="ITEM-007-C" name="ITEM-007" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">8</span></span>
+</label>
+
+<label class="choice" for="ITEM-007-D">
+  <input id="ITEM-007-D" name="ITEM-007" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">14</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer B | Review status draft | Answer Feedback | medium</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> B</p>
+  <p><strong>Explanation:</strong> Add the equations to get 2x = 14, so x = 7.</p>
+  <p><strong>Subdomain:</strong> Systems of two linear equations in two variables</p>
+  <p><strong>Difficulty:</strong> medium</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> system-elimination error</p>
+  <p><strong>Remediation tag:</strong> <code>systems-linear</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This is the value of y, not x.</li><li><strong>C:</strong> This comes from subtracting equations incorrectly.</li><li><strong>D:</strong> This adds the equations but does not divide by 2.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-8">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 8 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-008</p>
+  </div>
+  <p>If f(x) = x<sup>2</sup> - 4x, what is f(6)?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-008-A">
+  <input id="ITEM-008-A" name="ITEM-008" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">4</span></span>
+</label>
+
+<label class="choice" for="ITEM-008-B">
+  <input id="ITEM-008-B" name="ITEM-008" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">12</span></span>
+</label>
+
+<label class="choice" for="ITEM-008-C">
+  <input id="ITEM-008-C" name="ITEM-008" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">20</span></span>
+</label>
+
+<label class="choice" for="ITEM-008-D">
+  <input id="ITEM-008-D" name="ITEM-008" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">36</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer B | Review status draft | Answer Feedback | medium</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> B</p>
+  <p><strong>Explanation:</strong> Substitute x = 6: f(6) = 6<sup>2</sup> - 4(6) = 36 - 24 = 12.</p>
+  <p><strong>Subdomain:</strong> Nonlinear functions</p>
+  <p><strong>Difficulty:</strong> medium</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> function-substitution error, order-of-operations error</p>
+  <p><strong>Remediation tag:</strong> <code>function-evaluation</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This computes (6 - 4)<sup>2</sup> instead of substituting 6 into both terms of x<sup>2</sup> - 4x.</li><li><strong>C:</strong> This uses 6<sup>2</sup> - 4 instead of 6<sup>2</sup> - 4(6).</li><li><strong>D:</strong> This evaluates only 6<sup>2</sup>.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-9">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 9 of 18 | Problem-Solving and Data Analysis</p>
+    <p class="item-id">ITEM-009</p>
+  </div>
+  <p>A price of $80 is increased by 15%. What is the new price?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-009-A">
+  <input id="ITEM-009-A" name="ITEM-009" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">$12</span></span>
+</label>
+
+<label class="choice" for="ITEM-009-B">
+  <input id="ITEM-009-B" name="ITEM-009" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">$68</span></span>
+</label>
+
+<label class="choice" for="ITEM-009-C">
+  <input id="ITEM-009-C" name="ITEM-009" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">$92</span></span>
+</label>
+
+<label class="choice" for="ITEM-009-D">
+  <input id="ITEM-009-D" name="ITEM-009" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">$95</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer C | Review status draft | Answer Feedback | medium</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> C</p>
+  <p><strong>Explanation:</strong> The increase is 0.15(80) = 12, so the new price is 80 + 12 = 92.</p>
+  <p><strong>Subdomain:</strong> Percentages</p>
+  <p><strong>Difficulty:</strong> medium</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> percent-base error</p>
+  <p><strong>Remediation tag:</strong> <code>percent-change</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This finds only the amount of increase.</li><li><strong>B:</strong> This subtracts the increase instead of adding it.</li><li><strong>D:</strong> This adds 15 dollars instead of 15 percent.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-10">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 10 of 18 | Algebra</p>
+    <p class="item-id">ITEM-010</p>
+  </div>
+  <p>The line y = 3x - 7 passes through the point (k, 8). What is the value of k?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer 5 | Review status draft | Answer Feedback | medium</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> 5</p>
+  <p><strong>Explanation:</strong> Substitute y = 8: 8 = 3k - 7, so 15 = 3k and k = 5.</p>
+  <p><strong>Subdomain:</strong> Linear functions</p>
+  <p><strong>Difficulty:</strong> medium</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> linear-function-substitution error</p>
+  <p><strong>Remediation tag:</strong> <code>linear-function-input</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <p><strong>Accepted answer rules:</strong> exact=5</p>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-11">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 11 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-011</p>
+  </div>
+  <p>What is the smaller solution to x<sup>2</sup> - 5x + 6 = 0?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-011-A">
+  <input id="ITEM-011-A" name="ITEM-011" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">1</span></span>
+</label>
+
+<label class="choice" for="ITEM-011-B">
+  <input id="ITEM-011-B" name="ITEM-011" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">2</span></span>
+</label>
+
+<label class="choice" for="ITEM-011-C">
+  <input id="ITEM-011-C" name="ITEM-011" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">3</span></span>
+</label>
+
+<label class="choice" for="ITEM-011-D">
+  <input id="ITEM-011-D" name="ITEM-011" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">6</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer B | Review status draft | Answer Feedback | medium</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> B</p>
+  <p><strong>Explanation:</strong> Factor as (x - 2)(x - 3) = 0. The solutions are 2 and 3, so the smaller solution is 2.</p>
+  <p><strong>Subdomain:</strong> Nonlinear equations in one variable</p>
+  <p><strong>Difficulty:</strong> medium</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> factoring error, solution-selection error</p>
+  <p><strong>Remediation tag:</strong> <code>quadratic-solving</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This chooses a factor of 6 but does not check that the two factors add to 5.</li><li><strong>C:</strong> This is a solution, but it is the larger solution.</li><li><strong>D:</strong> This is the product of the two solutions, not a solution.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-12">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 12 of 18 | Geometry and Trigonometry</p>
+    <p class="item-id">ITEM-012</p>
+  </div>
+  <p>A right triangle has legs of lengths 9 and 12. What is the length of the hypotenuse?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer 15 | Review status draft | Answer Feedback | medium</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> 15</p>
+  <p><strong>Explanation:</strong> Use a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>: 9<sup>2</sup> + 12<sup>2</sup> = 81 + 144 = 225, so c = 15.</p>
+  <p><strong>Subdomain:</strong> Right triangles and trigonometry</p>
+  <p><strong>Difficulty:</strong> medium</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> pythagorean-theorem error</p>
+  <p><strong>Remediation tag:</strong> <code>right-triangle-length</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <p><strong>Accepted answer rules:</strong> exact=15</p>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-13">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 13 of 18 | Algebra</p>
+    <p class="item-id">ITEM-013</p>
+  </div>
+  <p>A line passes through (2, 7) and (5, 19). What is the slope of the line?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-013-A">
+  <input id="ITEM-013-A" name="ITEM-013" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">3</span></span>
+</label>
+
+<label class="choice" for="ITEM-013-B">
+  <input id="ITEM-013-B" name="ITEM-013" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">4</span></span>
+</label>
+
+<label class="choice" for="ITEM-013-C">
+  <input id="ITEM-013-C" name="ITEM-013" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">6</span></span>
+</label>
+
+<label class="choice" for="ITEM-013-D">
+  <input id="ITEM-013-D" name="ITEM-013" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">12</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer B | Review status draft | Answer Feedback | medium</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> B</p>
+  <p><strong>Explanation:</strong> The slope is (19 - 7)/(5 - 2) = <span class="frac"><span>12</span><span>3</span></span> = 4.</p>
+  <p><strong>Subdomain:</strong> Linear functions</p>
+  <p><strong>Difficulty:</strong> medium</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> slope formula error</p>
+  <p><strong>Remediation tag:</strong> <code>slope-from-points</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This is the change in x, not the slope.</li><li><strong>C:</strong> This divides the change in y by 2 instead of the change in x.</li><li><strong>D:</strong> This is the change in y, not the slope.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-14">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 14 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-014</p>
+  </div>
+  <p>If h(x) = 2x<sup>2</sup> + 3x - 5, which expression is equivalent to h(x + 1) - h(x)?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-014-A">
+  <input id="ITEM-014-A" name="ITEM-014" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">4x + 5</span></span>
+</label>
+
+<label class="choice" for="ITEM-014-B">
+  <input id="ITEM-014-B" name="ITEM-014" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">4x + 1</span></span>
+</label>
+
+<label class="choice" for="ITEM-014-C">
+  <input id="ITEM-014-C" name="ITEM-014" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">2x + 3</span></span>
+</label>
+
+<label class="choice" for="ITEM-014-D">
+  <input id="ITEM-014-D" name="ITEM-014" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">2x<sup>2</sup> + 7x</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer A | Review status draft | Answer Feedback | hard</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> A</p>
+  <p><strong>Explanation:</strong> h(x + 1) = 2(x + 1)<sup>2</sup> + 3(x + 1) - 5 = 2x<sup>2</sup> + 7x. Subtracting h(x) gives 4x + 5.</p>
+  <p><strong>Subdomain:</strong> Nonlinear functions</p>
+  <p><strong>Difficulty:</strong> hard</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> function-composition error, expansion error</p>
+  <p><strong>Remediation tag:</strong> <code>symbolic-function-comparison</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>B:</strong> This expands h(x + 1) with an incorrect constant term.</li><li><strong>C:</strong> This treats the change in 2x<sup>2</sup> as 2x and includes only the +3 from the linear term.</li><li><strong>D:</strong> This computes h(x + 1) but does not subtract h(x).</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-15">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 15 of 18 | Problem-Solving and Data Analysis</p>
+    <p class="item-id">ITEM-015</p>
+  </div>
+  <p>Six numbers have a mean of 18. When the largest number is removed, the mean of the remaining five numbers is 16. What is the largest number?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer 28 | Review status draft | Answer Feedback | hard</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> 28</p>
+  <p><strong>Explanation:</strong> The six numbers have total 6*18 = 108. The remaining five numbers have total 5*16 = 80. The removed largest number is 108 - 80 = 28.</p>
+  <p><strong>Subdomain:</strong> One-variable data distributions</p>
+  <p><strong>Difficulty:</strong> hard</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> mean-total error, removed-value error</p>
+  <p><strong>Remediation tag:</strong> <code>mean-change-removed-value</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <p><strong>Accepted answer rules:</strong> exact=28</p>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-16">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 16 of 18 | Algebra</p>
+    <p class="item-id">ITEM-016</p>
+  </div>
+  <p>For what value of a is a(2x - 3) = 10x - 15 true for all values of x?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-016-A">
+  <input id="ITEM-016-A" name="ITEM-016" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">3</span></span>
+</label>
+
+<label class="choice" for="ITEM-016-B">
+  <input id="ITEM-016-B" name="ITEM-016" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">5</span></span>
+</label>
+
+<label class="choice" for="ITEM-016-C">
+  <input id="ITEM-016-C" name="ITEM-016" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">10</span></span>
+</label>
+
+<label class="choice" for="ITEM-016-D">
+  <input id="ITEM-016-D" name="ITEM-016" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">15</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer B | Review status draft | Answer Feedback | hard</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> B</p>
+  <p><strong>Explanation:</strong> Distribute to get 2ax - 3a. Matching 10x - 15 requires 2a = 10 and -3a = -15, so a = 5.</p>
+  <p><strong>Subdomain:</strong> Linear equations in one variable</p>
+  <p><strong>Difficulty:</strong> hard</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> distribution error, coefficient-matching error</p>
+  <p><strong>Remediation tag:</strong> <code>equivalent-linear-expressions</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This matches the constant inside the parentheses, not the distributed expression.</li><li><strong>C:</strong> This matches the coefficient of x before accounting for 2x.</li><li><strong>D:</strong> This matches the constant term without considering the sign and factor.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-17">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 17 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-017</p>
+  </div>
+  <p>If <span class="math-radical">&radic;(3x + 1)</span> = 5, what is the value of x?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer 8 | Review status draft | Answer Feedback | hard</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> 8</p>
+  <p><strong>Explanation:</strong> Square both sides to get 3x + 1 = 25. Then 3x = 24, so x = 8.</p>
+  <p><strong>Subdomain:</strong> Nonlinear equations in one variable</p>
+  <p><strong>Difficulty:</strong> hard</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> radical-equation error</p>
+  <p><strong>Remediation tag:</strong> <code>radical-equation-solving</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <p><strong>Accepted answer rules:</strong> exact=8</p>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-1-item-18">
+  <div class="item-header">
+    <p class="meta">Module 1 | Question 18 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-018</p>
+  </div>
+  <p>For which values of x is the expression 1/(x<sup>2</sup> - 4x) undefined?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-018-A">
+  <input id="ITEM-018-A" name="ITEM-018" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">0 only</span></span>
+</label>
+
+<label class="choice" for="ITEM-018-B">
+  <input id="ITEM-018-B" name="ITEM-018" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">4 only</span></span>
+</label>
+
+<label class="choice" for="ITEM-018-C">
+  <input id="ITEM-018-C" name="ITEM-018" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">0 and 4</span></span>
+</label>
+
+<label class="choice" for="ITEM-018-D">
+  <input id="ITEM-018-D" name="ITEM-018" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">-4 and 4</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer C | Review status draft | Answer Feedback | hard</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> C</p>
+  <p><strong>Explanation:</strong> The denominator factors as x(x - 4). It is zero at x = 0 and x = 4.</p>
+  <p><strong>Subdomain:</strong> Equivalent expressions</p>
+  <p><strong>Difficulty:</strong> hard</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> domain restriction error, factoring error</p>
+  <p><strong>Remediation tag:</strong> <code>rational-expression-domain</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This finds one zero of the denominator but misses x = 4.</li><li><strong>B:</strong> This finds one zero of the denominator but misses x = 0.</li><li><strong>D:</strong> This factors x<sup>2</sup> - 4x as if it were a difference of squares.</li></ul>
+</div>
+</details>
+
+</section>
+</section><section class="module" id="module-2"><div class="module-header"><div><h2>Module 2</h2><p class="module-meta">Time: 30 minutes. Items: 18.</p></div><p class="module-meta">Draft review status shown per item.</p></div>
+<section class="item" id="module-2-item-1">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 1 of 18 | Algebra</p>
+    <p class="item-id">ITEM-019</p>
+  </div>
+  <p>If 4x - 9 = 2x + 7, what is the value of x?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-019-A">
+  <input id="ITEM-019-A" name="ITEM-019" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">2</span></span>
+</label>
+
+<label class="choice" for="ITEM-019-B">
+  <input id="ITEM-019-B" name="ITEM-019" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">4</span></span>
+</label>
+
+<label class="choice" for="ITEM-019-C">
+  <input id="ITEM-019-C" name="ITEM-019" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">8</span></span>
+</label>
+
+<label class="choice" for="ITEM-019-D">
+  <input id="ITEM-019-D" name="ITEM-019" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">16</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer C | Review status draft | Answer Feedback | easy</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> C</p>
+  <p><strong>Explanation:</strong> Subtract 2x from both sides to get 2x - 9 = 7. Add 9 to get 2x = 16, so x = 8.</p>
+  <p><strong>Subdomain:</strong> Linear equations in one variable</p>
+  <p><strong>Difficulty:</strong> easy</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> inverse-operation error</p>
+  <p><strong>Remediation tag:</strong> <code>linear-equation-solving</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This divides the constant difference by the wrong coefficient.</li><li><strong>B:</strong> This treats the right side as 7 and ignores the 2x term before solving.</li><li><strong>D:</strong> This finds 2x but does not divide by 2.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-2">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 2 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-020</p>
+  </div>
+  <p>Which expression is equivalent to (2x<sup>3</sup>)(3x<sup>2</sup>)?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-020-A">
+  <input id="ITEM-020-A" name="ITEM-020" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">5x<sup>5</sup></span></span>
+</label>
+
+<label class="choice" for="ITEM-020-B">
+  <input id="ITEM-020-B" name="ITEM-020" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">6x<sup>5</sup></span></span>
+</label>
+
+<label class="choice" for="ITEM-020-C">
+  <input id="ITEM-020-C" name="ITEM-020" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">6x<sup>6</sup></span></span>
+</label>
+
+<label class="choice" for="ITEM-020-D">
+  <input id="ITEM-020-D" name="ITEM-020" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">12x<sup>5</sup></span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer B | Review status draft | Answer Feedback | easy</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> B</p>
+  <p><strong>Explanation:</strong> Multiply coefficients and add exponents on like bases: 2*3*x<sup>3+2</sup> = 6x<sup>5</sup>.</p>
+  <p><strong>Subdomain:</strong> Equivalent expressions</p>
+  <p><strong>Difficulty:</strong> easy</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> exponent-rule error, coefficient operation error</p>
+  <p><strong>Remediation tag:</strong> <code>exponent-rules</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This adds the coefficients instead of multiplying them.</li><li><strong>C:</strong> This multiplies the exponents instead of adding them.</li><li><strong>D:</strong> This multiplies the coefficients by an extra factor of 2.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-3">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 3 of 18 | Problem-Solving and Data Analysis</p>
+    <p class="item-id">ITEM-021</p>
+  </div>
+  <p>A bag contains 5 red tiles, 3 blue tiles, and 2 green tiles. If one tile is selected at random, what is the probability that it is not blue?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-021-A">
+  <input id="ITEM-021-A" name="ITEM-021" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text"><span class="frac"><span>3</span><span>10</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-021-B">
+  <input id="ITEM-021-B" name="ITEM-021" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text"><span class="frac"><span>7</span><span>10</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-021-C">
+  <input id="ITEM-021-C" name="ITEM-021" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text"><span class="frac"><span>2</span><span>7</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-021-D">
+  <input id="ITEM-021-D" name="ITEM-021" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text"><span class="frac"><span>7</span><span>3</span></span></span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer B | Review status draft | Answer Feedback | easy</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> B</p>
+  <p><strong>Explanation:</strong> There are 10 tiles total and 7 are not blue, so the probability is <span class="frac"><span>7</span><span>10</span></span>.</p>
+  <p><strong>Subdomain:</strong> Probability and conditional probability</p>
+  <p><strong>Difficulty:</strong> easy</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> probability complement error</p>
+  <p><strong>Remediation tag:</strong> <code>basic-probability</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This is the probability of blue, not not blue.</li><li><strong>C:</strong> This compares green tiles to non-blue tiles.</li><li><strong>D:</strong> This reverses favorable and total counts.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-4">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 4 of 18 | Geometry and Trigonometry</p>
+    <p class="item-id">ITEM-022</p>
+  </div>
+  <p>Two angles of a triangle measure 42 degrees and 68 degrees. What is the measure, in degrees, of the third angle?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-022-A">
+  <input id="ITEM-022-A" name="ITEM-022" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">70</span></span>
+</label>
+
+<label class="choice" for="ITEM-022-B">
+  <input id="ITEM-022-B" name="ITEM-022" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">90</span></span>
+</label>
+
+<label class="choice" for="ITEM-022-C">
+  <input id="ITEM-022-C" name="ITEM-022" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">110</span></span>
+</label>
+
+<label class="choice" for="ITEM-022-D">
+  <input id="ITEM-022-D" name="ITEM-022" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">138</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer A | Review status draft | Answer Feedback | easy</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> A</p>
+  <p><strong>Explanation:</strong> The angles in a triangle sum to 180 degrees. The third angle is 180 - 42 - 68 = 70.</p>
+  <p><strong>Subdomain:</strong> Lines, angles, and triangles</p>
+  <p><strong>Difficulty:</strong> easy</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> angle-sum error</p>
+  <p><strong>Remediation tag:</strong> <code>triangle-angle-sum</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>B:</strong> This assumes the triangle is right without evidence.</li><li><strong>C:</strong> This adds the two given angles.</li><li><strong>D:</strong> This subtracts one given angle from 180 but ignores the other.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-5">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 5 of 18 | Algebra</p>
+    <p class="item-id">ITEM-023</p>
+  </div>
+  <p>What is the y-intercept of the line 3x + 2y = 12?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-023-A">
+  <input id="ITEM-023-A" name="ITEM-023" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">2</span></span>
+</label>
+
+<label class="choice" for="ITEM-023-B">
+  <input id="ITEM-023-B" name="ITEM-023" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">3</span></span>
+</label>
+
+<label class="choice" for="ITEM-023-C">
+  <input id="ITEM-023-C" name="ITEM-023" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">4</span></span>
+</label>
+
+<label class="choice" for="ITEM-023-D">
+  <input id="ITEM-023-D" name="ITEM-023" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">6</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer D | Review status draft | Answer Feedback | easy</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> D</p>
+  <p><strong>Explanation:</strong> Set x = 0 to find the y-intercept: 2y = 12, so y = 6.</p>
+  <p><strong>Subdomain:</strong> Linear equations in two variables</p>
+  <p><strong>Difficulty:</strong> easy</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> intercept confusion</p>
+  <p><strong>Remediation tag:</strong> <code>linear-intercepts</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This uses the coefficient of y, not the intercept.</li><li><strong>B:</strong> This uses the coefficient of x, not the intercept.</li><li><strong>C:</strong> This is the x-intercept.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-6">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 6 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-024</p>
+  </div>
+  <p>The function q(x) = (x - 4)<sup>2</sup> + 7 is graphed in the xy-plane. What is the vertex of the graph?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-024-A">
+  <input id="ITEM-024-A" name="ITEM-024" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">(-4, 7)</span></span>
+</label>
+
+<label class="choice" for="ITEM-024-B">
+  <input id="ITEM-024-B" name="ITEM-024" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">(4, 7)</span></span>
+</label>
+
+<label class="choice" for="ITEM-024-C">
+  <input id="ITEM-024-C" name="ITEM-024" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">(7, 4)</span></span>
+</label>
+
+<label class="choice" for="ITEM-024-D">
+  <input id="ITEM-024-D" name="ITEM-024" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">(4, -7)</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer B | Review status draft | Answer Feedback | easy</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> B</p>
+  <p><strong>Explanation:</strong> A quadratic in vertex form (x - h)<sup>2</sup> + k has vertex (h, k), so the vertex is (4, 7).</p>
+  <p><strong>Subdomain:</strong> Nonlinear functions</p>
+  <p><strong>Difficulty:</strong> easy</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> vertex-form error</p>
+  <p><strong>Remediation tag:</strong> <code>quadratic-vertex-form</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This uses the sign inside the parentheses without reversing it.</li><li><strong>C:</strong> This switches the x- and y-coordinates.</li><li><strong>D:</strong> This changes the sign of the vertical shift.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-7">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 7 of 18 | Algebra</p>
+    <p class="item-id">ITEM-025</p>
+  </div>
+  <p>A line is parallel to y = -3x + 2. What is the slope of the line?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-025-A">
+  <input id="ITEM-025-A" name="ITEM-025" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">-3</span></span>
+</label>
+
+<label class="choice" for="ITEM-025-B">
+  <input id="ITEM-025-B" name="ITEM-025" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text"><span class="frac"><span>-1</span><span>3</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-025-C">
+  <input id="ITEM-025-C" name="ITEM-025" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text"><span class="frac"><span>1</span><span>3</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-025-D">
+  <input id="ITEM-025-D" name="ITEM-025" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">2</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer A | Review status draft | Answer Feedback | medium</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> A</p>
+  <p><strong>Explanation:</strong> Parallel lines have the same slope. The slope of y = -3x + 2 is -3.</p>
+  <p><strong>Subdomain:</strong> Linear functions</p>
+  <p><strong>Difficulty:</strong> medium</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> parallel-slope error</p>
+  <p><strong>Remediation tag:</strong> <code>linear-slope-relationships</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>B:</strong> This uses the negative reciprocal, which applies to perpendicular lines.</li><li><strong>C:</strong> This uses the reciprocal and changes the sign.</li><li><strong>D:</strong> This identifies the y-intercept of the given line.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-8">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 8 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-026</p>
+  </div>
+  <p>If 2<sup>x + 1</sup> = 32, what is the value of x?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer 4 | Review status draft | Answer Feedback | medium</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> 4</p>
+  <p><strong>Explanation:</strong> Since 32 = 2<sup>5</sup>, x + 1 = 5 and x = 4.</p>
+  <p><strong>Subdomain:</strong> Nonlinear equations in one variable</p>
+  <p><strong>Difficulty:</strong> medium</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> exponent-equation error</p>
+  <p><strong>Remediation tag:</strong> <code>exponential-equation-solving</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <p><strong>Accepted answer rules:</strong> exact=4</p>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-9">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 9 of 18 | Geometry and Trigonometry</p>
+    <p class="item-id">ITEM-027</p>
+  </div>
+  <p>Two similar triangles have corresponding side lengths in the ratio 3:5. If the area of the smaller triangle is 36 square units, what is the area of the larger triangle?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-027-A">
+  <input id="ITEM-027-A" name="ITEM-027" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">60</span></span>
+</label>
+
+<label class="choice" for="ITEM-027-B">
+  <input id="ITEM-027-B" name="ITEM-027" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">144</span></span>
+</label>
+
+<label class="choice" for="ITEM-027-C">
+  <input id="ITEM-027-C" name="ITEM-027" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">100</span></span>
+</label>
+
+<label class="choice" for="ITEM-027-D">
+  <input id="ITEM-027-D" name="ITEM-027" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">180</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer C | Review status draft | Answer Feedback | medium</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> C</p>
+  <p><strong>Explanation:</strong> Area scales by the square of the side scale factor. The larger area is 36*(<span class="frac"><span>5</span><span>3</span></span>)<sup>2</sup> = 36*(<span class="frac"><span>25</span><span>9</span></span>) = 100.</p>
+  <p><strong>Subdomain:</strong> Lines, angles, and triangles</p>
+  <p><strong>Difficulty:</strong> medium</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> scale-factor error</p>
+  <p><strong>Remediation tag:</strong> <code>similar-figure-area</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This scales area by the side-length ratio instead of the square of the ratio.</li><li><strong>B:</strong> This treats the side scale factor as 2 instead of <span class="frac"><span>5</span><span>3</span></span>, then squares that incorrect factor.</li><li><strong>D:</strong> This multiplies by 5 instead of using the squared scale factor.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-10">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 10 of 18 | Algebra</p>
+    <p class="item-id">ITEM-028</p>
+  </div>
+  <p>If 0.25x + 6 = 18, what is the value of x?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer 48 | Review status draft | Answer Feedback | medium</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> 48</p>
+  <p><strong>Explanation:</strong> Subtract 6 to get 0.25x = 12. Since 0.25 = <span class="frac"><span>1</span><span>4</span></span>, x = 48.</p>
+  <p><strong>Subdomain:</strong> Linear equations in one variable</p>
+  <p><strong>Difficulty:</strong> medium</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> decimal-coefficient error</p>
+  <p><strong>Remediation tag:</strong> <code>linear-equation-decimals</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <p><strong>Accepted answer rules:</strong> exact=48</p>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-11">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 11 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-029</p>
+  </div>
+  <p>Which expression is equivalent to x<sup>2</sup> + 7x + 10?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-029-A">
+  <input id="ITEM-029-A" name="ITEM-029" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">(x + 5)(x + 2)</span></span>
+</label>
+
+<label class="choice" for="ITEM-029-B">
+  <input id="ITEM-029-B" name="ITEM-029" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">(x - 5)(x - 2)</span></span>
+</label>
+
+<label class="choice" for="ITEM-029-C">
+  <input id="ITEM-029-C" name="ITEM-029" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">(x + 10)(x + 1)</span></span>
+</label>
+
+<label class="choice" for="ITEM-029-D">
+  <input id="ITEM-029-D" name="ITEM-029" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">(x + 7)(x + 10)</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer A | Review status draft | Answer Feedback | medium</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> A</p>
+  <p><strong>Explanation:</strong> Find two numbers that multiply to 10 and add to 7: 5 and 2. The factorization is (x + 5)(x + 2).</p>
+  <p><strong>Subdomain:</strong> Equivalent expressions</p>
+  <p><strong>Difficulty:</strong> medium</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> factoring error</p>
+  <p><strong>Remediation tag:</strong> <code>quadratic-factoring</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>B:</strong> This gives the correct factors with incorrect signs.</li><li><strong>C:</strong> This has the right product but the middle term would be 11x.</li><li><strong>D:</strong> This uses the coefficient and constant as factors directly.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-12">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 12 of 18 | Problem-Solving and Data Analysis</p>
+    <p class="item-id">ITEM-030</p>
+  </div>
+  <p>Thirty percent of n is 45. What is the value of n?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer 150 | Review status draft | Answer Feedback | medium</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> 150</p>
+  <p><strong>Explanation:</strong> Set 0.30n = 45. Dividing by 0.30 gives n = 150.</p>
+  <p><strong>Subdomain:</strong> Percentages</p>
+  <p><strong>Difficulty:</strong> medium</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> percent-base error</p>
+  <p><strong>Remediation tag:</strong> <code>percent-whole-from-part</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <p><strong>Accepted answer rules:</strong> exact=150</p>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-13">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 13 of 18 | Algebra</p>
+    <p class="item-id">ITEM-031</p>
+  </div>
+  <p>A service charge is modeled by C = 25 + 8h, where C is the total cost in dollars for h hours. What does 8 represent in this model?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-031-A">
+  <input id="ITEM-031-A" name="ITEM-031" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">The fixed cost before any hours are added</span></span>
+</label>
+
+<label class="choice" for="ITEM-031-B">
+  <input id="ITEM-031-B" name="ITEM-031" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">The number of hours purchased</span></span>
+</label>
+
+<label class="choice" for="ITEM-031-C">
+  <input id="ITEM-031-C" name="ITEM-031" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">The cost per hour</span></span>
+</label>
+
+<label class="choice" for="ITEM-031-D">
+  <input id="ITEM-031-D" name="ITEM-031" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">The total cost for 8 hours</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer C | Review status draft | Answer Feedback | medium</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> C</p>
+  <p><strong>Explanation:</strong> In C = 25 + 8h, the coefficient of h is the rate of change, so the cost is 8 dollars per hour.</p>
+  <p><strong>Subdomain:</strong> Linear functions</p>
+  <p><strong>Difficulty:</strong> medium</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> linear-model interpretation error</p>
+  <p><strong>Remediation tag:</strong> <code>linear-model-rate</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> The fixed cost is the constant 25.</li><li><strong>B:</strong> The variable h represents the number of hours.</li><li><strong>D:</strong> The coefficient 8 is a rate, not a total for 8 hours.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-14">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 14 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-032</p>
+  </div>
+  <p>What are the solutions to |x - 2| = 5?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-032-A">
+  <input id="ITEM-032-A" name="ITEM-032" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">-3 and 7</span></span>
+</label>
+
+<label class="choice" for="ITEM-032-B">
+  <input id="ITEM-032-B" name="ITEM-032" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">3 and 7</span></span>
+</label>
+
+<label class="choice" for="ITEM-032-C">
+  <input id="ITEM-032-C" name="ITEM-032" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">-7 and 3</span></span>
+</label>
+
+<label class="choice" for="ITEM-032-D">
+  <input id="ITEM-032-D" name="ITEM-032" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">7 only</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer A | Review status draft | Answer Feedback | hard</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> A</p>
+  <p><strong>Explanation:</strong> The equation means x - 2 = 5 or x - 2 = -5, so x = 7 or x = -3.</p>
+  <p><strong>Subdomain:</strong> Nonlinear equations in one variable</p>
+  <p><strong>Difficulty:</strong> hard</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> absolute-value branch error</p>
+  <p><strong>Remediation tag:</strong> <code>absolute-value-equations</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>B:</strong> This solves x - 2 = 5 but handles the negative case incorrectly.</li><li><strong>C:</strong> This changes the sign of the wrong term.</li><li><strong>D:</strong> This includes only the positive-distance solution.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-15">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 15 of 18 | Geometry and Trigonometry</p>
+    <p class="item-id">ITEM-033</p>
+  </div>
+  <p>In a right triangle, sin(<span class="math-expr">&theta;</span>) = <span class="frac"><span>3</span><span>5</span></span> and the hypotenuse has length 20. What is the length of the leg adjacent to <span class="math-expr">&theta;</span>?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer 16 | Review status draft | Answer Feedback | hard</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> 16</p>
+  <p><strong>Explanation:</strong> If sin(<span class="math-expr">&theta;</span>) = <span class="frac"><span>3</span><span>5</span></span>, the opposite leg and hypotenuse are in the ratio 3:5. With hypotenuse 20, the scale factor is 4, so the opposite leg is 12. The adjacent leg is <span class="math-radical">&radic;(20<sup>2</sup> - 12<sup>2</sup>)</span> = <span class="math-radical">&radic;(256)</span> = 16.</p>
+  <p><strong>Subdomain:</strong> Right triangles and trigonometry</p>
+  <p><strong>Difficulty:</strong> hard</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> trig-ratio error, pythagorean-theorem error</p>
+  <p><strong>Remediation tag:</strong> <code>right-triangle-trigonometry</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <p><strong>Accepted answer rules:</strong> exact=16</p>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-16">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 16 of 18 | Algebra</p>
+    <p class="item-id">ITEM-034</p>
+  </div>
+  <p>Which inequality is equivalent to 2(x - 3) &le; 10?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-034-A">
+  <input id="ITEM-034-A" name="ITEM-034" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text">x &le; 2</span></span>
+</label>
+
+<label class="choice" for="ITEM-034-B">
+  <input id="ITEM-034-B" name="ITEM-034" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text">x &le; 8</span></span>
+</label>
+
+<label class="choice" for="ITEM-034-C">
+  <input id="ITEM-034-C" name="ITEM-034" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text">x &ge; 8</span></span>
+</label>
+
+<label class="choice" for="ITEM-034-D">
+  <input id="ITEM-034-D" name="ITEM-034" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">x &le; 13</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer B | Review status draft | Answer Feedback | hard</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> B</p>
+  <p><strong>Explanation:</strong> Distribute or divide by 2: x - 3 &le; 5, so x &le; 8.</p>
+  <p><strong>Subdomain:</strong> Linear inequalities in one or two variables</p>
+  <p><strong>Difficulty:</strong> hard</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> inequality solving error</p>
+  <p><strong>Remediation tag:</strong> <code>linear-inequality-solving</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This subtracts 6 from 10 after distributing instead of adding 6.</li><li><strong>C:</strong> This reverses the inequality even though division is by a positive number.</li><li><strong>D:</strong> This ignores the factor of 2 and solves x - 3 &le; 10 before adding 3.</li></ul>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-17">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 17 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-035</p>
+  </div>
+  <p>If f(x) = x<sup>2</sup> + 2 and g(x) = 3x - 1, what is f(g(2))?</p>
+  <p class="numeric-guidance"><strong>Response:</strong> Enter a numeric value. Equivalent fractions or decimals may be accepted when mathematically equal.</p><div class="answer-box" aria-label="Numeric response box"></div>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer 27 | Review status draft | Answer Feedback | hard</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> 27</p>
+  <p><strong>Explanation:</strong> First find g(2) = 3(2) - 1 = 5. Then f(5) = 5<sup>2</sup> + 2 = 27.</p>
+  <p><strong>Subdomain:</strong> Nonlinear functions</p>
+  <p><strong>Difficulty:</strong> hard</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> function-composition error</p>
+  <p><strong>Remediation tag:</strong> <code>function-composition</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <p><strong>Accepted answer rules:</strong> exact=27</p>
+</div>
+</details>
+
+</section>
+
+<section class="item" id="module-2-item-18">
+  <div class="item-header">
+    <p class="meta">Module 2 | Question 18 of 18 | Advanced Math</p>
+    <p class="item-id">ITEM-036</p>
+  </div>
+  <p>If (x + 2)/(x - 1) = 3 and x is not equal to 1, what is the value of x?</p>
+  <fieldset class="choices"><legend class="meta">Select one answer.</legend>
+<label class="choice" for="ITEM-036-A">
+  <input id="ITEM-036-A" name="ITEM-036" type="radio" disabled>
+  <span><span class="choice-label">A</span><span class="choice-text"><span class="frac"><span>2</span><span>5</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-036-B">
+  <input id="ITEM-036-B" name="ITEM-036" type="radio" disabled>
+  <span><span class="choice-label">B</span><span class="choice-text"><span class="frac"><span>5</span><span>2</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-036-C">
+  <input id="ITEM-036-C" name="ITEM-036" type="radio" disabled>
+  <span><span class="choice-label">C</span><span class="choice-text"><span class="frac"><span>-5</span><span>2</span></span></span></span>
+</label>
+
+<label class="choice" for="ITEM-036-D">
+  <input id="ITEM-036-D" name="ITEM-036" type="radio" disabled>
+  <span><span class="choice-label">D</span><span class="choice-text">5</span></span>
+</label>
+</fieldset>
+
+<details class="review-detail">
+<summary>Instructor Review Details <span>Answer B | Review status draft | Answer Feedback | hard</span></summary>
+<div class="key">
+  <p><strong>Correct answer:</strong> B</p>
+  <p><strong>Explanation:</strong> Multiply by x - 1: x + 2 = 3x - 3. Then 5 = 2x, so x = <span class="frac"><span>5</span><span>2</span></span>.</p>
+  <p><strong>Subdomain:</strong> Nonlinear equations in one variable</p>
+  <p><strong>Difficulty:</strong> hard</p>
+  <p><strong>Review status:</strong> <code>draft</code></p>
+  <p><strong>Misconception tags:</strong> rational-equation error</p>
+  <p><strong>Remediation tag:</strong> <code>rational-equation-solving</code></p>
+</div>
+<div class="feedback">
+  <h4>Answer Feedback</h4>
+  <ul><li><strong>A:</strong> This reverses the final division step and divides 2 by 5 instead of 5 by 2.</li><li><strong>C:</strong> This changes the sign when moving terms after clearing the denominator.</li><li><strong>D:</strong> This finds the numerator difference but does not divide by 2.</li></ul>
+</div>
+</details>
+
+</section>
+</section>
+</main>
+</body>
+</html>

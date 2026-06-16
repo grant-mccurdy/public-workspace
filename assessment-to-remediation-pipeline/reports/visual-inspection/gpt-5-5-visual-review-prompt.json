@@ -1,0 +1,192 @@
+{
+  "task": "Critique public-safe assessment preview screenshots and inspection results.",
+  "model_role": "GPT-5.5 is acting as an advisory visual and assessment-review critic for an automated portfolio gate.",
+  "source_of_truth": [
+    "The generated HTML previews and screenshots are the visual evidence.",
+    "The form spec and item-bank summary are context for structure and review readiness.",
+    "Do not recommend live Canvas upload.",
+    "Do not rewrite assessment items unless identifying a concise issue for automated review.",
+    "Do not invent validation claims, student outcomes, or private context."
+  ],
+  "assessment_context": {
+    "title": "SAT Math Readiness Diagnostic Prototype",
+    "timing": {
+      "total_minutes": 60,
+      "module_count": 2,
+      "minutes_per_module": 30,
+      "target_assessment_minutes": 70,
+      "target_assessment_items": 44,
+      "scaled_item_count_float": 37.7,
+      "mvp_item_count": 36,
+      "scaling_rationale": "A 36-item form preserves the official SAT Math timing scale while allowing two equal 18-item modules and a clean 75/25 item-type split."
+    },
+    "item_type_counts": {
+      "multiple_choice": 27,
+      "numeric_student_produced_response": 9
+    },
+    "content_domain_counts": {
+      "Algebra": 13,
+      "Advanced Math": 13,
+      "Problem-Solving and Data Analysis": 5,
+      "Geometry and Trigonometry": 5
+    },
+    "canvas_boundary": "offline_payload_only"
+  },
+  "item_bank_summary": {
+    "item_count": 36,
+    "domain_counts": {
+      "Algebra": 13,
+      "Problem-Solving and Data Analysis": 5,
+      "Geometry and Trigonometry": 5,
+      "Advanced Math": 13
+    },
+    "item_type_counts": {
+      "multiple_choice": 27,
+      "numeric_student_produced_response": 9
+    },
+    "review_status_counts": {
+      "draft": 36
+    },
+    "difficulty_counts": {
+      "easy": 12,
+      "medium": 14,
+      "hard": 10
+    },
+    "first_items": [
+      {
+        "item_id": "ITEM-001",
+        "domain": "Algebra",
+        "item_type": "multiple_choice",
+        "difficulty_band": "easy",
+        "review_status": "draft",
+        "stem_text": "If 3x + 5 = 20, what is the value of x?"
+      },
+      {
+        "item_id": "ITEM-002",
+        "domain": "Algebra",
+        "item_type": "multiple_choice",
+        "difficulty_band": "easy",
+        "review_status": "draft",
+        "stem_text": "The equation 2y - 4x = 10 represents a line. What is the slope of the line?"
+      },
+      {
+        "item_id": "ITEM-003",
+        "domain": "Problem-Solving and Data Analysis",
+        "item_type": "multiple_choice",
+        "difficulty_band": "easy",
+        "review_status": "draft",
+        "stem_text": "A train travels 144 miles in 3 hours at a constant speed. What is the speed, in miles per hour?"
+      },
+      {
+        "item_id": "ITEM-004",
+        "domain": "Geometry and Trigonometry",
+        "item_type": "multiple_choice",
+        "difficulty_band": "easy",
+        "review_status": "draft",
+        "stem_text": "A triangle has base 14 units and height 9 units. What is its area, in square units?"
+      },
+      {
+        "item_id": "ITEM-005",
+        "domain": "Algebra",
+        "item_type": "multiple_choice",
+        "difficulty_band": "easy",
+        "review_status": "draft",
+        "stem_text": "Which inequality is equivalent to 5 - 2x &gt; 13?"
+      },
+      {
+        "item_id": "ITEM-006",
+        "domain": "Advanced Math",
+        "item_type": "multiple_choice",
+        "difficulty_band": "easy",
+        "review_status": "draft",
+        "stem_text": "For x not equal to 3, which expression is equivalent to (x^2 - 9)/(x - 3)?"
+      }
+    ]
+  },
+  "visual_inspection": {
+    "generated_at": "not_recorded_for_reproducible_offline_review",
+    "mode": "local_static_preview",
+    "safety_boundary": "no external sites, credentials, Canvas calls, uploads, sends, or submissions",
+    "cases": [
+      {
+        "label": "student-desktop",
+        "file": "previews/student_form.html",
+        "viewport": {
+          "width": 1440,
+          "height": 1200
+        },
+        "title": "SAT Math Readiness Diagnostic Prototype Student Preview",
+        "h1": "SAT Math Readiness Diagnostic Prototype",
+        "itemCount": 36,
+        "moduleCount": 2,
+        "bodyTextLength": 7961,
+        "missingMarkers": [],
+        "overflow": [],
+        "failures": [],
+        "screenshot": "reports/visual-inspection/screenshots/student-desktop.png"
+      },
+      {
+        "label": "student-mobile",
+        "file": "previews/student_form.html",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "title": "SAT Math Readiness Diagnostic Prototype Student Preview",
+        "h1": "SAT Math Readiness Diagnostic Prototype",
+        "itemCount": 36,
+        "moduleCount": 2,
+        "bodyTextLength": 7961,
+        "missingMarkers": [],
+        "overflow": [],
+        "failures": [],
+        "screenshot": "reports/visual-inspection/screenshots/student-mobile.png"
+      },
+      {
+        "label": "instructor-desktop",
+        "file": "previews/instructor_review.html",
+        "viewport": {
+          "width": 1440,
+          "height": 1200
+        },
+        "title": "SAT Math Readiness Diagnostic Prototype Instructor Review",
+        "h1": "SAT Math Readiness Diagnostic Prototype Instructor Review",
+        "itemCount": 36,
+        "moduleCount": 2,
+        "bodyTextLength": 11500,
+        "missingMarkers": [],
+        "overflow": [],
+        "failures": [],
+        "screenshot": "reports/visual-inspection/screenshots/instructor-desktop.png"
+      },
+      {
+        "label": "instructor-mobile",
+        "file": "previews/instructor_review.html",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "title": "SAT Math Readiness Diagnostic Prototype Instructor Review",
+        "h1": "SAT Math Readiness Diagnostic Prototype Instructor Review",
+        "itemCount": 36,
+        "moduleCount": 2,
+        "bodyTextLength": 11500,
+        "missingMarkers": [],
+        "overflow": [],
+        "failures": [],
+        "screenshot": "reports/visual-inspection/screenshots/instructor-mobile.png"
+      }
+    ],
+    "status": "PASS"
+  },
+  "criteria": [
+    "student preview readability and test-like usability",
+    "instructor preview usefulness for automated review",
+    "visual hierarchy and scanability",
+    "mobile usability",
+    "page density and overflow risk",
+    "clarity of public-safety and draft-status language",
+    "whether any presentation issue should block the automated review gate"
+  ],
+  "return_json_only": true
+}

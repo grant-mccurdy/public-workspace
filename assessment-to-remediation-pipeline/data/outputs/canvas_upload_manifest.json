@@ -1,0 +1,24 @@
+{
+  "export_timestamp_utc": "not_recorded_for_reproducible_offline_dry_run",
+  "assessment_id": "sat-math-readiness-diagnostic-v0",
+  "assessment_version": "0.1.0",
+  "live_upload_status": "not_attempted",
+  "public_safety_status": "offline artifact contains no credentials or live Canvas identifiers",
+  "automated_gate_status": "PASS",
+  "automated_export_allowed": true,
+  "form_gate_reasons": [],
+  "exportable_item_count": 36,
+  "excluded_item_count": 0,
+  "total_item_count": 36,
+  "domain_counts": {
+    "Algebra": 13,
+    "Problem-Solving and Data Analysis": 5,
+    "Geometry and Trigonometry": 5,
+    "Advanced Math": 13
+  },
+  "item_type_counts": {
+    "multiple_choice": 27,
+    "numeric_student_produced_response": 9
+  },
+  "excluded_items": []
+}

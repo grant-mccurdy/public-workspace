@@ -1,0 +1,66 @@
+{
+  "generated_at": "not_recorded_for_reproducible_offline_review",
+  "model": "gpt-5.5",
+  "model_label": "GPT-5.5",
+  "openai_used": true,
+  "review": {
+    "overall_score": 84,
+    "decision": "POLISH_RECOMMENDED",
+    "one_sentence_assessment": "The previews are structurally complete, public-safe, and visually usable across desktop and mobile, with no blocking presentation failures, but they would benefit from density, navigation, and notation polish before broader review.",
+    "strengths": [
+      "Both student and instructor previews show the expected 36 items split into two 18-item modules, matching the provided form structure.",
+      "The student preview has clear top-level framing: title, public-safe notice, draft-status warning, timing, instructions, item counts, and module sections.",
+      "The instructor preview adds useful review context, including a dashboard, item navigation, answer-key visibility, review status, difficulty labels, and collapsible instructor details.",
+      "Desktop layout is clean and test-like, with consistent item cards, clear option rows, and enough whitespace for reading.",
+      "The inspection reports no missing markers, overflow, or visual failures across the four checked viewport cases.",
+      "Public-safety and offline-review language is visible and appropriately separates the prototype from live Canvas activity or validated testing claims."
+    ],
+    "visual_issues": [
+      "The assessment is presented as a very long single scrolling page, which is usable but can feel fatiguing and makes mid-form navigation harder, especially on mobile.",
+      "Mobile rendering is functional but dense; text, metadata lines, and option rows are small and compressed in several cards.",
+      "The top navigation buttons are helpful but minimal; a sticky module/item navigation aid or clearer progress affordance would improve usability on long forms.",
+      "Some math notation appears in plain text or compact inline formatting, which is readable in many cases but may be less polished and more error-prone on small screens.",
+      "Numeric response inputs are visually narrower than the surrounding item card; this is acceptable for simple numeric entry but looks less consistent than the multiple-choice option rows.",
+      "The instructor dashboard is useful but becomes vertically stacked and crowded on mobile, reducing scanability of summary counts and item navigation.",
+      "Item metadata, item IDs, and module/question labels are helpful but small; on mobile they may be difficult to scan quickly."
+    ],
+    "assessment_review_issues": [
+      "All 36 items are marked draft, so the preview should remain in review status rather than being treated as finalized content.",
+      "The form is described as a 60-minute scaled MVP prototype while the context also references a 70-minute target assessment; this is explained by the scaling rationale, but reviewers should ensure the displayed timing language remains unambiguous.",
+      "The instructor preview exposes answers and review status as expected, but the collapsed detail rows may require reviewers to expand many sections manually unless automated review extracts the same metadata separately.",
+      "Plain-text mathematical notation, fractions, exponents, and symbols should be checked by automated content review for fidelity rather than relying only on visual appearance.",
+      "No visual evidence suggests a need to block the automated review gate, but content validation, answer-key verification, accessibility checks, and psychometric claims should remain out of scope unless separately reviewed."
+    ],
+    "student_preview_notes": [
+      "The student preview reads like a coherent static diagnostic form and avoids showing answer keys or instructor-only metadata.",
+      "Instructions are clear enough for offline prototype use and state the module timing, item type expectations, and calculator assumption.",
+      "Module breaks are visually distinct, which helps the long page feel organized.",
+      "On mobile, the form remains usable but requires extensive scrolling; progress cues are limited after the initial overview.",
+      "The public-safe and draft-language notices are visible near the top, but they may be missed once students scroll deep into the form."
+    ],
+    "instructor_preview_notes": [
+      "The instructor preview is more review-ready than the student preview because it includes summary counts, item navigation, answers, draft status, feedback status, and difficulty information.",
+      "The review dashboard is valuable for automated or human spot checks, especially the domain, item-type, difficulty, and review-status summaries.",
+      "The item-navigation chip grid gives reviewers a quick way to locate items, though it becomes dense on mobile.",
+      "Collapsible instructor details reduce clutter, but repeated expansion could slow manual review across 36 items.",
+      "The instructor page clearly maintains the offline/public-safe boundary and does not suggest Canvas upload or live deployment."
+    ],
+    "improvement_priorities": [
+      "Add stronger progress/navigation support for the long form, such as sticky module navigation, return-to-top links, or clearer progress markers.",
+      "Increase mobile readability by slightly enlarging small metadata text and improving spacing in item headers and dashboard cards.",
+      "Review mathematical notation rendering for consistency, especially fractions, exponents, inequalities, and inline expressions on mobile.",
+      "Consider making numeric response fields visually align better with the rest of the answer area while preserving simple input behavior.",
+      "Keep the draft/public-safe warning visible or repeated near module starts so the prototype status remains clear beyond the top of the page.",
+      "Ensure automated review separately verifies item content, answer keys, accessibility semantics, and metadata consistency before any non-preview use."
+    ],
+    "review_gate_flags": [
+      "NO_BLOCKING_VISUAL_FAILURES_REPORTED",
+      "OFFLINE_ONLY_BOUNDARY_VISIBLE",
+      "PUBLIC_SAFE_LANGUAGE_VISIBLE",
+      "DRAFT_STATUS_VISIBLE",
+      "ALL_ITEMS_DRAFT",
+      "MOBILE_DENSITY_POLISH_RECOMMENDED",
+      "LONG_SINGLE_PAGE_SCROLL_RISK"
+    ]
+  }
+}
