@@ -77,6 +77,14 @@ The MVP should prove that the pipeline is reproducible, public-safe, internally 
 
 ## Suggested Commands
 
+Public artifact check:
+
+```bash
+make validate-public-artifacts
+```
+
+This validates the committed API-reviewed artifact packet without regenerating outputs.
+
 Initial placeholder checks:
 
 ```bash

@@ -89,19 +89,25 @@ Current review status:
 
 The project is public-safe and ready to be tracked in the public repository. It is not a live LMS deployment, validated assessment, or production Canvas integration.
 
-Build and validate the current local artifacts with:
+Validate the committed public artifact set without regenerating outputs:
+
+```bash
+make validate-public-artifacts
+```
+
+Build a fully deterministic local dry-run artifact set with:
 
 ```bash
 make all
 ```
 
-Build the current API-reviewed public artifact set with:
+Build an API-reviewed public artifact set with:
 
 ```bash
 OPENAI_ITEM_REVIEW_MODEL=gpt-5.5 OPENAI_VISUAL_REVIEW_MODEL=gpt-5.5 make canvas-export-api
 ```
 
-`make all` is still useful for local deterministic validation, but it regenerates dry-run review reports. Use `make canvas-export-api` when you want the checked artifacts to reflect the API-backed review gate.
+`make all` is useful for local deterministic validation, but it regenerates dry-run review reports and blocks Canvas export by design. Use `make validate-public-artifacts` to check the committed public packet, and use `make canvas-export-api` when you want regenerated artifacts to reflect the API-backed review gate.
 
 Run the optional API-backed visual review only after confirming screenshots are public-safe:
 

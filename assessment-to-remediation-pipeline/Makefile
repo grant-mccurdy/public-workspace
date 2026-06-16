@@ -1,4 +1,4 @@
-.PHONY: all check item-bank item-review automated-item-review-dry-run automated-item-review-api automated-review-gate automated-review-gate-api previews canvas-export canvas-export-api validate-architecture validate-item-bank visual-inspect visual-review-dry-run visual-review-api
+.PHONY: all check item-bank item-review automated-item-review-dry-run automated-item-review-api automated-review-gate automated-review-gate-api previews canvas-export canvas-export-api validate-architecture validate-item-bank validate-public-artifacts visual-inspect visual-review-dry-run visual-review-api
 
 all: item-bank validate-architecture validate-item-bank item-review previews visual-inspect visual-review-dry-run automated-item-review-dry-run automated-review-gate canvas-export
 
@@ -45,3 +45,6 @@ validate-architecture:
 
 validate-item-bank: item-bank
 	python3 src/validate_item_bank.py
+
+validate-public-artifacts:
+	python3 src/validate_public_artifacts.py
