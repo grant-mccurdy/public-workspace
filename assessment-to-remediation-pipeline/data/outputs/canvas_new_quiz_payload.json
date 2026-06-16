@@ -1,0 +1,1722 @@
+{
+  "mode": "offline_payload_only",
+  "live_api_calls_allowed": false,
+  "automated_review_gate": {
+    "gate_status": "PASS",
+    "export_allowed": true,
+    "source": "reports/automated-review/automated-review.json"
+  },
+  "quiz": {
+    "title": "SAT Math Readiness Diagnostic Prototype",
+    "instructions": "Original SAT Math-correlated readiness diagnostic prototype. Offline payload artifact only; do not treat as a live Canvas upload.",
+    "time_limit": 60,
+    "quiz_settings": {
+      "shuffle_questions": false,
+      "shuffle_answers": false,
+      "one_question_at_a_time": false
+    }
+  },
+  "items": [
+    {
+      "position": 1,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-001",
+        "item_body": "<p>If 3x + 5 = 20, what is the value of x?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-001-A",
+              "position": 1,
+              "item_body": "5"
+            },
+            {
+              "id": "ITEM-001-B",
+              "position": 2,
+              "item_body": "15"
+            },
+            {
+              "id": "ITEM-001-C",
+              "position": 3,
+              "item_body": "25/3"
+            },
+            {
+              "id": "ITEM-001-D",
+              "position": 4,
+              "item_body": "-5"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-001-A"
+        },
+        "feedback": {
+          "neutral": "Subtract 5 from both sides to get 3x = 15, then divide by 3 to get x = 5.",
+          "answer_feedback": {
+            "ITEM-001-B": "This subtracts 5 but does not divide by 3.",
+            "ITEM-001-C": "This adds 5 instead of subtracting 5 before dividing.",
+            "ITEM-001-D": "This uses the opposite sign after solving."
+          }
+        },
+        "properties": {
+          "domain": "Algebra",
+          "subdomain": "Linear equations in one variable",
+          "difficulty_band": "easy",
+          "remediation_tag": "linear-equation-solving"
+        }
+      }
+    },
+    {
+      "position": 2,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-002",
+        "item_body": "<p>The equation 2y - 4x = 10 represents a line. What is the slope of the line?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-002-A",
+              "position": 1,
+              "item_body": "2"
+            },
+            {
+              "id": "ITEM-002-B",
+              "position": 2,
+              "item_body": "-2"
+            },
+            {
+              "id": "ITEM-002-C",
+              "position": 3,
+              "item_body": "4"
+            },
+            {
+              "id": "ITEM-002-D",
+              "position": 4,
+              "item_body": "5"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-002-A"
+        },
+        "feedback": {
+          "neutral": "Rewrite as 2y = 4x + 10, then y = 2x + 5. The slope is 2.",
+          "answer_feedback": {
+            "ITEM-002-B": "This keeps the sign from -4x instead of solving for y.",
+            "ITEM-002-C": "This uses the coefficient of x before dividing by 2.",
+            "ITEM-002-D": "This identifies the y-intercept, not the slope."
+          }
+        },
+        "properties": {
+          "domain": "Algebra",
+          "subdomain": "Linear equations in two variables",
+          "difficulty_band": "easy",
+          "remediation_tag": "linear-equation-slope"
+        }
+      }
+    },
+    {
+      "position": 3,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-003",
+        "item_body": "<p>A train travels 144 miles in 3 hours at a constant speed. What is the speed, in miles per hour?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-003-A",
+              "position": 1,
+              "item_body": "36"
+            },
+            {
+              "id": "ITEM-003-B",
+              "position": 2,
+              "item_body": "48"
+            },
+            {
+              "id": "ITEM-003-C",
+              "position": 3,
+              "item_body": "141"
+            },
+            {
+              "id": "ITEM-003-D",
+              "position": 4,
+              "item_body": "432"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-003-B"
+        },
+        "feedback": {
+          "neutral": "Divide miles by hours: 144 / 3 = 48 miles per hour.",
+          "answer_feedback": {
+            "ITEM-003-A": "This divides by 4 rather than by the 3 hours given.",
+            "ITEM-003-C": "This subtracts the time from the distance.",
+            "ITEM-003-D": "This multiplies distance by time instead of dividing."
+          }
+        },
+        "properties": {
+          "domain": "Problem-Solving and Data Analysis",
+          "subdomain": "Ratios, rates, proportional relationships, and units",
+          "difficulty_band": "easy",
+          "remediation_tag": "unit-rate-reasoning"
+        }
+      }
+    },
+    {
+      "position": 4,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-004",
+        "item_body": "<p>A triangle has base 14 units and height 9 units. What is its area, in square units?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-004-A",
+              "position": 1,
+              "item_body": "23"
+            },
+            {
+              "id": "ITEM-004-B",
+              "position": 2,
+              "item_body": "63"
+            },
+            {
+              "id": "ITEM-004-C",
+              "position": 3,
+              "item_body": "126"
+            },
+            {
+              "id": "ITEM-004-D",
+              "position": 4,
+              "item_body": "196"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-004-B"
+        },
+        "feedback": {
+          "neutral": "Triangle area is (1/2)bh = (1/2)(14)(9) = 63.",
+          "answer_feedback": {
+            "ITEM-004-A": "This adds the base and height instead of using area.",
+            "ITEM-004-C": "This multiplies base by height but omits the factor of 1/2.",
+            "ITEM-004-D": "This squares the base instead of using both dimensions."
+          }
+        },
+        "properties": {
+          "domain": "Geometry and Trigonometry",
+          "subdomain": "Area and volume formulas",
+          "difficulty_band": "easy",
+          "remediation_tag": "triangle-area"
+        }
+      }
+    },
+    {
+      "position": 5,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-005",
+        "item_body": "<p>Which inequality is equivalent to 5 - 2x &gt; 13?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-005-A",
+              "position": 1,
+              "item_body": "x &gt; -4"
+            },
+            {
+              "id": "ITEM-005-B",
+              "position": 2,
+              "item_body": "x &lt; -4"
+            },
+            {
+              "id": "ITEM-005-C",
+              "position": 3,
+              "item_body": "x &gt; 4"
+            },
+            {
+              "id": "ITEM-005-D",
+              "position": 4,
+              "item_body": "x &lt; 4"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-005-B"
+        },
+        "feedback": {
+          "neutral": "Subtract 5 to get -2x > 8. Dividing by -2 reverses the inequality, so x < -4.",
+          "answer_feedback": {
+            "ITEM-005-A": "This does not reverse the inequality when dividing by -2.",
+            "ITEM-005-C": "This misses both the negative value and the inequality reversal.",
+            "ITEM-005-D": "This reverses the inequality but loses the negative value."
+          }
+        },
+        "properties": {
+          "domain": "Algebra",
+          "subdomain": "Linear inequalities in one or two variables",
+          "difficulty_band": "easy",
+          "remediation_tag": "linear-inequality-solving"
+        }
+      }
+    },
+    {
+      "position": 6,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-006",
+        "item_body": "<p>For x not equal to 3, which expression is equivalent to (x^2 - 9)/(x - 3)?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-006-A",
+              "position": 1,
+              "item_body": "x - 3"
+            },
+            {
+              "id": "ITEM-006-B",
+              "position": 2,
+              "item_body": "x + 3"
+            },
+            {
+              "id": "ITEM-006-C",
+              "position": 3,
+              "item_body": "x^2 + 3"
+            },
+            {
+              "id": "ITEM-006-D",
+              "position": 4,
+              "item_body": "1/(x + 3)"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-006-B"
+        },
+        "feedback": {
+          "neutral": "Factor x^2 - 9 as (x - 3)(x + 3). Cancel x - 3 to get x + 3.",
+          "answer_feedback": {
+            "ITEM-006-A": "This cancels the wrong factor after factoring the numerator.",
+            "ITEM-006-C": "This does not factor the difference of squares.",
+            "ITEM-006-D": "This reverses the simplified expression."
+          }
+        },
+        "properties": {
+          "domain": "Advanced Math",
+          "subdomain": "Equivalent expressions",
+          "difficulty_band": "easy",
+          "remediation_tag": "equivalent-expressions"
+        }
+      }
+    },
+    {
+      "position": 7,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-007",
+        "item_body": "<p>If x + y = 11 and x - y = 3, what is the value of x?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-007-A",
+              "position": 1,
+              "item_body": "4"
+            },
+            {
+              "id": "ITEM-007-B",
+              "position": 2,
+              "item_body": "7"
+            },
+            {
+              "id": "ITEM-007-C",
+              "position": 3,
+              "item_body": "8"
+            },
+            {
+              "id": "ITEM-007-D",
+              "position": 4,
+              "item_body": "14"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-007-B"
+        },
+        "feedback": {
+          "neutral": "Add the equations to get 2x = 14, so x = 7.",
+          "answer_feedback": {
+            "ITEM-007-A": "This is the value of y, not x.",
+            "ITEM-007-C": "This comes from subtracting equations incorrectly.",
+            "ITEM-007-D": "This adds the equations but does not divide by 2."
+          }
+        },
+        "properties": {
+          "domain": "Algebra",
+          "subdomain": "Systems of two linear equations in two variables",
+          "difficulty_band": "medium",
+          "remediation_tag": "systems-linear"
+        }
+      }
+    },
+    {
+      "position": 8,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-008",
+        "item_body": "<p>If f(x) = x^2 - 4x, what is f(6)?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-008-A",
+              "position": 1,
+              "item_body": "4"
+            },
+            {
+              "id": "ITEM-008-B",
+              "position": 2,
+              "item_body": "12"
+            },
+            {
+              "id": "ITEM-008-C",
+              "position": 3,
+              "item_body": "20"
+            },
+            {
+              "id": "ITEM-008-D",
+              "position": 4,
+              "item_body": "36"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-008-B"
+        },
+        "feedback": {
+          "neutral": "Substitute x = 6: f(6) = 6^2 - 4(6) = 36 - 24 = 12.",
+          "answer_feedback": {
+            "ITEM-008-A": "This computes (6 - 4)^2 instead of substituting 6 into both terms of x^2 - 4x.",
+            "ITEM-008-C": "This uses 6^2 - 4 instead of 6^2 - 4(6).",
+            "ITEM-008-D": "This evaluates only 6^2."
+          }
+        },
+        "properties": {
+          "domain": "Advanced Math",
+          "subdomain": "Nonlinear functions",
+          "difficulty_band": "medium",
+          "remediation_tag": "function-evaluation"
+        }
+      }
+    },
+    {
+      "position": 9,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-009",
+        "item_body": "<p>A price of $80 is increased by 15%. What is the new price?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-009-A",
+              "position": 1,
+              "item_body": "$12"
+            },
+            {
+              "id": "ITEM-009-B",
+              "position": 2,
+              "item_body": "$68"
+            },
+            {
+              "id": "ITEM-009-C",
+              "position": 3,
+              "item_body": "$92"
+            },
+            {
+              "id": "ITEM-009-D",
+              "position": 4,
+              "item_body": "$95"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-009-C"
+        },
+        "feedback": {
+          "neutral": "The increase is 0.15(80) = 12, so the new price is 80 + 12 = 92.",
+          "answer_feedback": {
+            "ITEM-009-A": "This finds only the amount of increase.",
+            "ITEM-009-B": "This subtracts the increase instead of adding it.",
+            "ITEM-009-D": "This adds 15 dollars instead of 15 percent."
+          }
+        },
+        "properties": {
+          "domain": "Problem-Solving and Data Analysis",
+          "subdomain": "Percentages",
+          "difficulty_band": "medium",
+          "remediation_tag": "percent-change"
+        }
+      }
+    },
+    {
+      "position": 10,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-010",
+        "item_body": "<p>The line y = 3x - 7 passes through the point (k, 8). What is the value of k?</p>",
+        "interaction_type_slug": "numeric",
+        "interaction_data": {
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "5"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "5",
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "5"
+            }
+          ]
+        },
+        "feedback": {
+          "neutral": "Substitute y = 8: 8 = 3k - 7, so 15 = 3k and k = 5."
+        },
+        "properties": {
+          "domain": "Algebra",
+          "subdomain": "Linear functions",
+          "difficulty_band": "medium",
+          "remediation_tag": "linear-function-input"
+        }
+      }
+    },
+    {
+      "position": 11,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-011",
+        "item_body": "<p>What is the smaller solution to x^2 - 5x + 6 = 0?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-011-A",
+              "position": 1,
+              "item_body": "1"
+            },
+            {
+              "id": "ITEM-011-B",
+              "position": 2,
+              "item_body": "2"
+            },
+            {
+              "id": "ITEM-011-C",
+              "position": 3,
+              "item_body": "3"
+            },
+            {
+              "id": "ITEM-011-D",
+              "position": 4,
+              "item_body": "6"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-011-B"
+        },
+        "feedback": {
+          "neutral": "Factor as (x - 2)(x - 3) = 0. The solutions are 2 and 3, so the smaller solution is 2.",
+          "answer_feedback": {
+            "ITEM-011-A": "This chooses a factor of 6 but does not check that the two factors add to 5.",
+            "ITEM-011-C": "This is a solution, but it is the larger solution.",
+            "ITEM-011-D": "This is the product of the two solutions, not a solution."
+          }
+        },
+        "properties": {
+          "domain": "Advanced Math",
+          "subdomain": "Nonlinear equations in one variable",
+          "difficulty_band": "medium",
+          "remediation_tag": "quadratic-solving"
+        }
+      }
+    },
+    {
+      "position": 12,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-012",
+        "item_body": "<p>A right triangle has legs of lengths 9 and 12. What is the length of the hypotenuse?</p>",
+        "interaction_type_slug": "numeric",
+        "interaction_data": {
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "15"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "15",
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "15"
+            }
+          ]
+        },
+        "feedback": {
+          "neutral": "Use a^2 + b^2 = c^2: 9^2 + 12^2 = 81 + 144 = 225, so c = 15."
+        },
+        "properties": {
+          "domain": "Geometry and Trigonometry",
+          "subdomain": "Right triangles and trigonometry",
+          "difficulty_band": "medium",
+          "remediation_tag": "right-triangle-length"
+        }
+      }
+    },
+    {
+      "position": 13,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-013",
+        "item_body": "<p>A line passes through (2, 7) and (5, 19). What is the slope of the line?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-013-A",
+              "position": 1,
+              "item_body": "3"
+            },
+            {
+              "id": "ITEM-013-B",
+              "position": 2,
+              "item_body": "4"
+            },
+            {
+              "id": "ITEM-013-C",
+              "position": 3,
+              "item_body": "6"
+            },
+            {
+              "id": "ITEM-013-D",
+              "position": 4,
+              "item_body": "12"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-013-B"
+        },
+        "feedback": {
+          "neutral": "The slope is (19 - 7)/(5 - 2) = 12/3 = 4.",
+          "answer_feedback": {
+            "ITEM-013-A": "This is the change in x, not the slope.",
+            "ITEM-013-C": "This divides the change in y by 2 instead of the change in x.",
+            "ITEM-013-D": "This is the change in y, not the slope."
+          }
+        },
+        "properties": {
+          "domain": "Algebra",
+          "subdomain": "Linear functions",
+          "difficulty_band": "medium",
+          "remediation_tag": "slope-from-points"
+        }
+      }
+    },
+    {
+      "position": 14,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-014",
+        "item_body": "<p>If h(x) = 2x^2 + 3x - 5, which expression is equivalent to h(x + 1) - h(x)?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-014-A",
+              "position": 1,
+              "item_body": "4x + 5"
+            },
+            {
+              "id": "ITEM-014-B",
+              "position": 2,
+              "item_body": "4x + 1"
+            },
+            {
+              "id": "ITEM-014-C",
+              "position": 3,
+              "item_body": "2x + 3"
+            },
+            {
+              "id": "ITEM-014-D",
+              "position": 4,
+              "item_body": "2x^2 + 7x"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-014-A"
+        },
+        "feedback": {
+          "neutral": "h(x + 1) = 2(x + 1)^2 + 3(x + 1) - 5 = 2x^2 + 7x. Subtracting h(x) gives 4x + 5.",
+          "answer_feedback": {
+            "ITEM-014-B": "This expands h(x + 1) with an incorrect constant term.",
+            "ITEM-014-C": "This treats the change in 2x^2 as 2x and includes only the +3 from the linear term.",
+            "ITEM-014-D": "This computes h(x + 1) but does not subtract h(x)."
+          }
+        },
+        "properties": {
+          "domain": "Advanced Math",
+          "subdomain": "Nonlinear functions",
+          "difficulty_band": "hard",
+          "remediation_tag": "symbolic-function-comparison"
+        }
+      }
+    },
+    {
+      "position": 15,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-015",
+        "item_body": "<p>Six numbers have a mean of 18. When the largest number is removed, the mean of the remaining five numbers is 16. What is the largest number?</p>",
+        "interaction_type_slug": "numeric",
+        "interaction_data": {
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "28"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "28",
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "28"
+            }
+          ]
+        },
+        "feedback": {
+          "neutral": "The six numbers have total 6*18 = 108. The remaining five numbers have total 5*16 = 80. The removed largest number is 108 - 80 = 28."
+        },
+        "properties": {
+          "domain": "Problem-Solving and Data Analysis",
+          "subdomain": "One-variable data distributions",
+          "difficulty_band": "hard",
+          "remediation_tag": "mean-change-removed-value"
+        }
+      }
+    },
+    {
+      "position": 16,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-016",
+        "item_body": "<p>For what value of a is a(2x - 3) = 10x - 15 true for all values of x?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-016-A",
+              "position": 1,
+              "item_body": "3"
+            },
+            {
+              "id": "ITEM-016-B",
+              "position": 2,
+              "item_body": "5"
+            },
+            {
+              "id": "ITEM-016-C",
+              "position": 3,
+              "item_body": "10"
+            },
+            {
+              "id": "ITEM-016-D",
+              "position": 4,
+              "item_body": "15"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-016-B"
+        },
+        "feedback": {
+          "neutral": "Distribute to get 2ax - 3a. Matching 10x - 15 requires 2a = 10 and -3a = -15, so a = 5.",
+          "answer_feedback": {
+            "ITEM-016-A": "This matches the constant inside the parentheses, not the distributed expression.",
+            "ITEM-016-C": "This matches the coefficient of x before accounting for 2x.",
+            "ITEM-016-D": "This matches the constant term without considering the sign and factor."
+          }
+        },
+        "properties": {
+          "domain": "Algebra",
+          "subdomain": "Linear equations in one variable",
+          "difficulty_band": "hard",
+          "remediation_tag": "equivalent-linear-expressions"
+        }
+      }
+    },
+    {
+      "position": 17,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-017",
+        "item_body": "<p>If sqrt(3x + 1) = 5, what is the value of x?</p>",
+        "interaction_type_slug": "numeric",
+        "interaction_data": {
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "8"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "8",
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "8"
+            }
+          ]
+        },
+        "feedback": {
+          "neutral": "Square both sides to get 3x + 1 = 25. Then 3x = 24, so x = 8."
+        },
+        "properties": {
+          "domain": "Advanced Math",
+          "subdomain": "Nonlinear equations in one variable",
+          "difficulty_band": "hard",
+          "remediation_tag": "radical-equation-solving"
+        }
+      }
+    },
+    {
+      "position": 18,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-018",
+        "item_body": "<p>For which values of x is the expression 1/(x^2 - 4x) undefined?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-018-A",
+              "position": 1,
+              "item_body": "0 only"
+            },
+            {
+              "id": "ITEM-018-B",
+              "position": 2,
+              "item_body": "4 only"
+            },
+            {
+              "id": "ITEM-018-C",
+              "position": 3,
+              "item_body": "0 and 4"
+            },
+            {
+              "id": "ITEM-018-D",
+              "position": 4,
+              "item_body": "-4 and 4"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-018-C"
+        },
+        "feedback": {
+          "neutral": "The denominator factors as x(x - 4). It is zero at x = 0 and x = 4.",
+          "answer_feedback": {
+            "ITEM-018-A": "This finds one zero of the denominator but misses x = 4.",
+            "ITEM-018-B": "This finds one zero of the denominator but misses x = 0.",
+            "ITEM-018-D": "This factors x^2 - 4x as if it were a difference of squares."
+          }
+        },
+        "properties": {
+          "domain": "Advanced Math",
+          "subdomain": "Equivalent expressions",
+          "difficulty_band": "hard",
+          "remediation_tag": "rational-expression-domain"
+        }
+      }
+    },
+    {
+      "position": 1,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-019",
+        "item_body": "<p>If 4x - 9 = 2x + 7, what is the value of x?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-019-A",
+              "position": 1,
+              "item_body": "2"
+            },
+            {
+              "id": "ITEM-019-B",
+              "position": 2,
+              "item_body": "4"
+            },
+            {
+              "id": "ITEM-019-C",
+              "position": 3,
+              "item_body": "8"
+            },
+            {
+              "id": "ITEM-019-D",
+              "position": 4,
+              "item_body": "16"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-019-C"
+        },
+        "feedback": {
+          "neutral": "Subtract 2x from both sides to get 2x - 9 = 7. Add 9 to get 2x = 16, so x = 8.",
+          "answer_feedback": {
+            "ITEM-019-A": "This divides the constant difference by the wrong coefficient.",
+            "ITEM-019-B": "This treats the right side as 7 and ignores the 2x term before solving.",
+            "ITEM-019-D": "This finds 2x but does not divide by 2."
+          }
+        },
+        "properties": {
+          "domain": "Algebra",
+          "subdomain": "Linear equations in one variable",
+          "difficulty_band": "easy",
+          "remediation_tag": "linear-equation-solving"
+        }
+      }
+    },
+    {
+      "position": 2,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-020",
+        "item_body": "<p>Which expression is equivalent to (2x^3)(3x^2)?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-020-A",
+              "position": 1,
+              "item_body": "5x^5"
+            },
+            {
+              "id": "ITEM-020-B",
+              "position": 2,
+              "item_body": "6x^5"
+            },
+            {
+              "id": "ITEM-020-C",
+              "position": 3,
+              "item_body": "6x^6"
+            },
+            {
+              "id": "ITEM-020-D",
+              "position": 4,
+              "item_body": "12x^5"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-020-B"
+        },
+        "feedback": {
+          "neutral": "Multiply coefficients and add exponents on like bases: 2*3*x^(3+2) = 6x^5.",
+          "answer_feedback": {
+            "ITEM-020-A": "This adds the coefficients instead of multiplying them.",
+            "ITEM-020-C": "This multiplies the exponents instead of adding them.",
+            "ITEM-020-D": "This multiplies the coefficients by an extra factor of 2."
+          }
+        },
+        "properties": {
+          "domain": "Advanced Math",
+          "subdomain": "Equivalent expressions",
+          "difficulty_band": "easy",
+          "remediation_tag": "exponent-rules"
+        }
+      }
+    },
+    {
+      "position": 3,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-021",
+        "item_body": "<p>A bag contains 5 red tiles, 3 blue tiles, and 2 green tiles. If one tile is selected at random, what is the probability that it is not blue?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-021-A",
+              "position": 1,
+              "item_body": "3/10"
+            },
+            {
+              "id": "ITEM-021-B",
+              "position": 2,
+              "item_body": "7/10"
+            },
+            {
+              "id": "ITEM-021-C",
+              "position": 3,
+              "item_body": "2/7"
+            },
+            {
+              "id": "ITEM-021-D",
+              "position": 4,
+              "item_body": "7/3"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-021-B"
+        },
+        "feedback": {
+          "neutral": "There are 10 tiles total and 7 are not blue, so the probability is 7/10.",
+          "answer_feedback": {
+            "ITEM-021-A": "This is the probability of blue, not not blue.",
+            "ITEM-021-C": "This compares green tiles to non-blue tiles.",
+            "ITEM-021-D": "This reverses favorable and total counts."
+          }
+        },
+        "properties": {
+          "domain": "Problem-Solving and Data Analysis",
+          "subdomain": "Probability and conditional probability",
+          "difficulty_band": "easy",
+          "remediation_tag": "basic-probability"
+        }
+      }
+    },
+    {
+      "position": 4,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-022",
+        "item_body": "<p>Two angles of a triangle measure 42 degrees and 68 degrees. What is the measure, in degrees, of the third angle?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-022-A",
+              "position": 1,
+              "item_body": "70"
+            },
+            {
+              "id": "ITEM-022-B",
+              "position": 2,
+              "item_body": "90"
+            },
+            {
+              "id": "ITEM-022-C",
+              "position": 3,
+              "item_body": "110"
+            },
+            {
+              "id": "ITEM-022-D",
+              "position": 4,
+              "item_body": "138"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-022-A"
+        },
+        "feedback": {
+          "neutral": "The angles in a triangle sum to 180 degrees. The third angle is 180 - 42 - 68 = 70.",
+          "answer_feedback": {
+            "ITEM-022-B": "This assumes the triangle is right without evidence.",
+            "ITEM-022-C": "This adds the two given angles.",
+            "ITEM-022-D": "This subtracts one given angle from 180 but ignores the other."
+          }
+        },
+        "properties": {
+          "domain": "Geometry and Trigonometry",
+          "subdomain": "Lines, angles, and triangles",
+          "difficulty_band": "easy",
+          "remediation_tag": "triangle-angle-sum"
+        }
+      }
+    },
+    {
+      "position": 5,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-023",
+        "item_body": "<p>What is the y-intercept of the line 3x + 2y = 12?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-023-A",
+              "position": 1,
+              "item_body": "2"
+            },
+            {
+              "id": "ITEM-023-B",
+              "position": 2,
+              "item_body": "3"
+            },
+            {
+              "id": "ITEM-023-C",
+              "position": 3,
+              "item_body": "4"
+            },
+            {
+              "id": "ITEM-023-D",
+              "position": 4,
+              "item_body": "6"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-023-D"
+        },
+        "feedback": {
+          "neutral": "Set x = 0 to find the y-intercept: 2y = 12, so y = 6.",
+          "answer_feedback": {
+            "ITEM-023-A": "This uses the coefficient of y, not the intercept.",
+            "ITEM-023-B": "This uses the coefficient of x, not the intercept.",
+            "ITEM-023-C": "This is the x-intercept."
+          }
+        },
+        "properties": {
+          "domain": "Algebra",
+          "subdomain": "Linear equations in two variables",
+          "difficulty_band": "easy",
+          "remediation_tag": "linear-intercepts"
+        }
+      }
+    },
+    {
+      "position": 6,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-024",
+        "item_body": "<p>The function q(x) = (x - 4)^2 + 7 is graphed in the xy-plane. What is the vertex of the graph?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-024-A",
+              "position": 1,
+              "item_body": "(-4, 7)"
+            },
+            {
+              "id": "ITEM-024-B",
+              "position": 2,
+              "item_body": "(4, 7)"
+            },
+            {
+              "id": "ITEM-024-C",
+              "position": 3,
+              "item_body": "(7, 4)"
+            },
+            {
+              "id": "ITEM-024-D",
+              "position": 4,
+              "item_body": "(4, -7)"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-024-B"
+        },
+        "feedback": {
+          "neutral": "A quadratic in vertex form (x - h)^2 + k has vertex (h, k), so the vertex is (4, 7).",
+          "answer_feedback": {
+            "ITEM-024-A": "This uses the sign inside the parentheses without reversing it.",
+            "ITEM-024-C": "This switches the x- and y-coordinates.",
+            "ITEM-024-D": "This changes the sign of the vertical shift."
+          }
+        },
+        "properties": {
+          "domain": "Advanced Math",
+          "subdomain": "Nonlinear functions",
+          "difficulty_band": "easy",
+          "remediation_tag": "quadratic-vertex-form"
+        }
+      }
+    },
+    {
+      "position": 7,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-025",
+        "item_body": "<p>A line is parallel to y = -3x + 2. What is the slope of the line?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-025-A",
+              "position": 1,
+              "item_body": "-3"
+            },
+            {
+              "id": "ITEM-025-B",
+              "position": 2,
+              "item_body": "-1/3"
+            },
+            {
+              "id": "ITEM-025-C",
+              "position": 3,
+              "item_body": "1/3"
+            },
+            {
+              "id": "ITEM-025-D",
+              "position": 4,
+              "item_body": "2"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-025-A"
+        },
+        "feedback": {
+          "neutral": "Parallel lines have the same slope. The slope of y = -3x + 2 is -3.",
+          "answer_feedback": {
+            "ITEM-025-B": "This uses the negative reciprocal, which applies to perpendicular lines.",
+            "ITEM-025-C": "This uses the reciprocal and changes the sign.",
+            "ITEM-025-D": "This identifies the y-intercept of the given line."
+          }
+        },
+        "properties": {
+          "domain": "Algebra",
+          "subdomain": "Linear functions",
+          "difficulty_band": "medium",
+          "remediation_tag": "linear-slope-relationships"
+        }
+      }
+    },
+    {
+      "position": 8,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-026",
+        "item_body": "<p>If 2^(x + 1) = 32, what is the value of x?</p>",
+        "interaction_type_slug": "numeric",
+        "interaction_data": {
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "4"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "4",
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "4"
+            }
+          ]
+        },
+        "feedback": {
+          "neutral": "Since 32 = 2^5, x + 1 = 5 and x = 4."
+        },
+        "properties": {
+          "domain": "Advanced Math",
+          "subdomain": "Nonlinear equations in one variable",
+          "difficulty_band": "medium",
+          "remediation_tag": "exponential-equation-solving"
+        }
+      }
+    },
+    {
+      "position": 9,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-027",
+        "item_body": "<p>Two similar triangles have corresponding side lengths in the ratio 3:5. If the area of the smaller triangle is 36 square units, what is the area of the larger triangle?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-027-A",
+              "position": 1,
+              "item_body": "60"
+            },
+            {
+              "id": "ITEM-027-B",
+              "position": 2,
+              "item_body": "144"
+            },
+            {
+              "id": "ITEM-027-C",
+              "position": 3,
+              "item_body": "100"
+            },
+            {
+              "id": "ITEM-027-D",
+              "position": 4,
+              "item_body": "180"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-027-C"
+        },
+        "feedback": {
+          "neutral": "Area scales by the square of the side scale factor. The larger area is 36*(5/3)^2 = 36*(25/9) = 100.",
+          "answer_feedback": {
+            "ITEM-027-A": "This scales area by the side-length ratio instead of the square of the ratio.",
+            "ITEM-027-B": "This treats the side scale factor as 2 instead of 5/3, then squares that incorrect factor.",
+            "ITEM-027-D": "This multiplies by 5 instead of using the squared scale factor."
+          }
+        },
+        "properties": {
+          "domain": "Geometry and Trigonometry",
+          "subdomain": "Lines, angles, and triangles",
+          "difficulty_band": "medium",
+          "remediation_tag": "similar-figure-area"
+        }
+      }
+    },
+    {
+      "position": 10,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-028",
+        "item_body": "<p>If 0.25x + 6 = 18, what is the value of x?</p>",
+        "interaction_type_slug": "numeric",
+        "interaction_data": {
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "48"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "48",
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "48"
+            }
+          ]
+        },
+        "feedback": {
+          "neutral": "Subtract 6 to get 0.25x = 12. Since 0.25 = 1/4, x = 48."
+        },
+        "properties": {
+          "domain": "Algebra",
+          "subdomain": "Linear equations in one variable",
+          "difficulty_band": "medium",
+          "remediation_tag": "linear-equation-decimals"
+        }
+      }
+    },
+    {
+      "position": 11,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-029",
+        "item_body": "<p>Which expression is equivalent to x^2 + 7x + 10?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-029-A",
+              "position": 1,
+              "item_body": "(x + 5)(x + 2)"
+            },
+            {
+              "id": "ITEM-029-B",
+              "position": 2,
+              "item_body": "(x - 5)(x - 2)"
+            },
+            {
+              "id": "ITEM-029-C",
+              "position": 3,
+              "item_body": "(x + 10)(x + 1)"
+            },
+            {
+              "id": "ITEM-029-D",
+              "position": 4,
+              "item_body": "(x + 7)(x + 10)"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-029-A"
+        },
+        "feedback": {
+          "neutral": "Find two numbers that multiply to 10 and add to 7: 5 and 2. The factorization is (x + 5)(x + 2).",
+          "answer_feedback": {
+            "ITEM-029-B": "This gives the correct factors with incorrect signs.",
+            "ITEM-029-C": "This has the right product but the middle term would be 11x.",
+            "ITEM-029-D": "This uses the coefficient and constant as factors directly."
+          }
+        },
+        "properties": {
+          "domain": "Advanced Math",
+          "subdomain": "Equivalent expressions",
+          "difficulty_band": "medium",
+          "remediation_tag": "quadratic-factoring"
+        }
+      }
+    },
+    {
+      "position": 12,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-030",
+        "item_body": "<p>Thirty percent of n is 45. What is the value of n?</p>",
+        "interaction_type_slug": "numeric",
+        "interaction_data": {
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "150"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "150",
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "150"
+            }
+          ]
+        },
+        "feedback": {
+          "neutral": "Set 0.30n = 45. Dividing by 0.30 gives n = 150."
+        },
+        "properties": {
+          "domain": "Problem-Solving and Data Analysis",
+          "subdomain": "Percentages",
+          "difficulty_band": "medium",
+          "remediation_tag": "percent-whole-from-part"
+        }
+      }
+    },
+    {
+      "position": 13,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-031",
+        "item_body": "<p>A service charge is modeled by C = 25 + 8h, where C is the total cost in dollars for h hours. What does 8 represent in this model?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-031-A",
+              "position": 1,
+              "item_body": "The fixed cost before any hours are added"
+            },
+            {
+              "id": "ITEM-031-B",
+              "position": 2,
+              "item_body": "The number of hours purchased"
+            },
+            {
+              "id": "ITEM-031-C",
+              "position": 3,
+              "item_body": "The cost per hour"
+            },
+            {
+              "id": "ITEM-031-D",
+              "position": 4,
+              "item_body": "The total cost for 8 hours"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-031-C"
+        },
+        "feedback": {
+          "neutral": "In C = 25 + 8h, the coefficient of h is the rate of change, so the cost is 8 dollars per hour.",
+          "answer_feedback": {
+            "ITEM-031-A": "The fixed cost is the constant 25.",
+            "ITEM-031-B": "The variable h represents the number of hours.",
+            "ITEM-031-D": "The coefficient 8 is a rate, not a total for 8 hours."
+          }
+        },
+        "properties": {
+          "domain": "Algebra",
+          "subdomain": "Linear functions",
+          "difficulty_band": "medium",
+          "remediation_tag": "linear-model-rate"
+        }
+      }
+    },
+    {
+      "position": 14,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-032",
+        "item_body": "<p>What are the solutions to |x - 2| = 5?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-032-A",
+              "position": 1,
+              "item_body": "-3 and 7"
+            },
+            {
+              "id": "ITEM-032-B",
+              "position": 2,
+              "item_body": "3 and 7"
+            },
+            {
+              "id": "ITEM-032-C",
+              "position": 3,
+              "item_body": "-7 and 3"
+            },
+            {
+              "id": "ITEM-032-D",
+              "position": 4,
+              "item_body": "7 only"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-032-A"
+        },
+        "feedback": {
+          "neutral": "The equation means x - 2 = 5 or x - 2 = -5, so x = 7 or x = -3.",
+          "answer_feedback": {
+            "ITEM-032-B": "This solves x - 2 = 5 but handles the negative case incorrectly.",
+            "ITEM-032-C": "This changes the sign of the wrong term.",
+            "ITEM-032-D": "This includes only the positive-distance solution."
+          }
+        },
+        "properties": {
+          "domain": "Advanced Math",
+          "subdomain": "Nonlinear equations in one variable",
+          "difficulty_band": "hard",
+          "remediation_tag": "absolute-value-equations"
+        }
+      }
+    },
+    {
+      "position": 15,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-033",
+        "item_body": "<p>In a right triangle, sin(theta) = 3/5 and the hypotenuse has length 20. What is the length of the leg adjacent to theta?</p>",
+        "interaction_type_slug": "numeric",
+        "interaction_data": {
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "16"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "16",
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "16"
+            }
+          ]
+        },
+        "feedback": {
+          "neutral": "If sin(theta) = 3/5, the opposite leg and hypotenuse are in the ratio 3:5. With hypotenuse 20, the scale factor is 4, so the opposite leg is 12. The adjacent leg is sqrt(20^2 - 12^2) = sqrt(256) = 16."
+        },
+        "properties": {
+          "domain": "Geometry and Trigonometry",
+          "subdomain": "Right triangles and trigonometry",
+          "difficulty_band": "hard",
+          "remediation_tag": "right-triangle-trigonometry"
+        }
+      }
+    },
+    {
+      "position": 16,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-034",
+        "item_body": "<p>Which inequality is equivalent to 2(x - 3) &lt;= 10?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-034-A",
+              "position": 1,
+              "item_body": "x &lt;= 2"
+            },
+            {
+              "id": "ITEM-034-B",
+              "position": 2,
+              "item_body": "x &lt;= 8"
+            },
+            {
+              "id": "ITEM-034-C",
+              "position": 3,
+              "item_body": "x &gt;= 8"
+            },
+            {
+              "id": "ITEM-034-D",
+              "position": 4,
+              "item_body": "x &lt;= 13"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-034-B"
+        },
+        "feedback": {
+          "neutral": "Distribute or divide by 2: x - 3 <= 5, so x <= 8.",
+          "answer_feedback": {
+            "ITEM-034-A": "This subtracts 6 from 10 after distributing instead of adding 6.",
+            "ITEM-034-C": "This reverses the inequality even though division is by a positive number.",
+            "ITEM-034-D": "This ignores the factor of 2 and solves x - 3 <= 10 before adding 3."
+          }
+        },
+        "properties": {
+          "domain": "Algebra",
+          "subdomain": "Linear inequalities in one or two variables",
+          "difficulty_band": "hard",
+          "remediation_tag": "linear-inequality-solving"
+        }
+      }
+    },
+    {
+      "position": 17,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-035",
+        "item_body": "<p>If f(x) = x^2 + 2 and g(x) = 3x - 1, what is f(g(2))?</p>",
+        "interaction_type_slug": "numeric",
+        "interaction_data": {
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "27"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "27",
+          "accepted_answer_rules": [
+            {
+              "type": "exact",
+              "value": "27"
+            }
+          ]
+        },
+        "feedback": {
+          "neutral": "First find g(2) = 3(2) - 1 = 5. Then f(5) = 5^2 + 2 = 27."
+        },
+        "properties": {
+          "domain": "Advanced Math",
+          "subdomain": "Nonlinear functions",
+          "difficulty_band": "hard",
+          "remediation_tag": "function-composition"
+        }
+      }
+    },
+    {
+      "position": 18,
+      "points_possible": 1,
+      "entry_type": "Item",
+      "entry": {
+        "title": "ITEM-036",
+        "item_body": "<p>If (x + 2)/(x - 1) = 3 and x is not equal to 1, what is the value of x?</p>",
+        "interaction_type_slug": "choice",
+        "interaction_data": {
+          "choices": [
+            {
+              "id": "ITEM-036-A",
+              "position": 1,
+              "item_body": "2/5"
+            },
+            {
+              "id": "ITEM-036-B",
+              "position": 2,
+              "item_body": "5/2"
+            },
+            {
+              "id": "ITEM-036-C",
+              "position": 3,
+              "item_body": "-5/2"
+            },
+            {
+              "id": "ITEM-036-D",
+              "position": 4,
+              "item_body": "5"
+            }
+          ]
+        },
+        "scoring_data": {
+          "value": "ITEM-036-B"
+        },
+        "feedback": {
+          "neutral": "Multiply by x - 1: x + 2 = 3x - 3. Then 5 = 2x, so x = 5/2.",
+          "answer_feedback": {
+            "ITEM-036-A": "This reverses the final division step and divides 2 by 5 instead of 5 by 2.",
+            "ITEM-036-C": "This changes the sign when moving terms after clearing the denominator.",
+            "ITEM-036-D": "This finds the numerator difference but does not divide by 2."
+          }
+        },
+        "properties": {
+          "domain": "Advanced Math",
+          "subdomain": "Nonlinear equations in one variable",
+          "difficulty_band": "hard",
+          "remediation_tag": "rational-equation-solving"
+        }
+      }
+    }
+  ]
+}

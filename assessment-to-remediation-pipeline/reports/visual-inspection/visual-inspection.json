@@ -1,0 +1,76 @@
+{
+  "generated_at": "not_recorded_for_reproducible_offline_review",
+  "mode": "local_static_preview",
+  "safety_boundary": "no external sites, credentials, Canvas calls, uploads, sends, or submissions",
+  "cases": [
+    {
+      "label": "student-desktop",
+      "file": "previews/student_form.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1200
+      },
+      "title": "SAT Math Readiness Diagnostic Prototype Student Preview",
+      "h1": "SAT Math Readiness Diagnostic Prototype",
+      "itemCount": 36,
+      "moduleCount": 2,
+      "bodyTextLength": 7961,
+      "missingMarkers": [],
+      "overflow": [],
+      "failures": [],
+      "screenshot": "reports/visual-inspection/screenshots/student-desktop.png"
+    },
+    {
+      "label": "student-mobile",
+      "file": "previews/student_form.html",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "title": "SAT Math Readiness Diagnostic Prototype Student Preview",
+      "h1": "SAT Math Readiness Diagnostic Prototype",
+      "itemCount": 36,
+      "moduleCount": 2,
+      "bodyTextLength": 7961,
+      "missingMarkers": [],
+      "overflow": [],
+      "failures": [],
+      "screenshot": "reports/visual-inspection/screenshots/student-mobile.png"
+    },
+    {
+      "label": "instructor-desktop",
+      "file": "previews/instructor_review.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1200
+      },
+      "title": "SAT Math Readiness Diagnostic Prototype Instructor Review",
+      "h1": "SAT Math Readiness Diagnostic Prototype Instructor Review",
+      "itemCount": 36,
+      "moduleCount": 2,
+      "bodyTextLength": 11500,
+      "missingMarkers": [],
+      "overflow": [],
+      "failures": [],
+      "screenshot": "reports/visual-inspection/screenshots/instructor-desktop.png"
+    },
+    {
+      "label": "instructor-mobile",
+      "file": "previews/instructor_review.html",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "title": "SAT Math Readiness Diagnostic Prototype Instructor Review",
+      "h1": "SAT Math Readiness Diagnostic Prototype Instructor Review",
+      "itemCount": 36,
+      "moduleCount": 2,
+      "bodyTextLength": 11500,
+      "missingMarkers": [],
+      "overflow": [],
+      "failures": [],
+      "screenshot": "reports/visual-inspection/screenshots/instructor-mobile.png"
+    }
+  ],
+  "status": "PASS"
+}

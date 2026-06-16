@@ -1,0 +1,96 @@
+{
+  "assessment_id": "sat-math-readiness-diagnostic-v0",
+  "title": "SAT Math Readiness Diagnostic Prototype",
+  "version": "0.1.0",
+  "status": "draft_item_bank_ready",
+  "source_policy": {
+    "research_sources": "official_only",
+    "college_board_sources": [
+      "https://satsuite.collegeboard.org/sat/whats-on-the-test/structure",
+      "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/overview",
+      "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/types",
+      "https://satsuite.collegeboard.org/sat/whats-on-the-test/math/student-produced"
+    ],
+    "canvas_sources": [
+      "https://canvas.instructure.com/doc/api/new_quizzes.html",
+      "https://canvas.instructure.com/doc/api/new_quiz_items.html",
+      "https://canvas.instructure.com/doc/api/new_quizzes_reports.html"
+    ],
+    "item_content_policy": "original_items_only"
+  },
+  "timing": {
+    "total_minutes": 60,
+    "module_count": 2,
+    "minutes_per_module": 30,
+    "target_assessment_minutes": 70,
+    "target_assessment_items": 44,
+    "scaled_item_count_float": 37.7,
+    "mvp_item_count": 36,
+    "scaling_rationale": "A 36-item form preserves the official SAT Math timing scale while allowing two equal 18-item modules and a clean 75/25 item-type split."
+  },
+  "item_type_counts": {
+    "multiple_choice": 27,
+    "numeric_student_produced_response": 9
+  },
+  "content_domain_counts": {
+    "Algebra": 13,
+    "Advanced Math": 13,
+    "Problem-Solving and Data Analysis": 5,
+    "Geometry and Trigonometry": 5
+  },
+  "module_blueprints": [
+    {
+      "module": 1,
+      "minutes": 30,
+      "items": 18,
+      "multiple_choice": 14,
+      "numeric_student_produced_response": 4,
+      "domain_counts": {
+        "Algebra": 7,
+        "Advanced Math": 6,
+        "Problem-Solving and Data Analysis": 3,
+        "Geometry and Trigonometry": 2
+      },
+      "difficulty_order": "easier_to_harder"
+    },
+    {
+      "module": 2,
+      "minutes": 30,
+      "items": 18,
+      "multiple_choice": 13,
+      "numeric_student_produced_response": 5,
+      "domain_counts": {
+        "Algebra": 6,
+        "Advanced Math": 7,
+        "Problem-Solving and Data Analysis": 2,
+        "Geometry and Trigonometry": 3
+      },
+      "difficulty_order": "easier_to_harder"
+    }
+  ],
+  "review_gate": {
+    "eligible_for_canvas_export_status": "approved",
+    "allowed_statuses": [
+      "draft",
+      "needs_revision",
+      "approved",
+      "retired"
+    ]
+  },
+  "canvas_export_boundary": {
+    "mvp_mode": "offline_payload_only",
+    "live_api_calls_allowed": false,
+    "supported_item_types": {
+      "multiple_choice": "choice",
+      "numeric_student_produced_response": "numeric"
+    },
+    "prohibited_public_fields": [
+      "canvas_base_url",
+      "course_id",
+      "assignment_id",
+      "user_id",
+      "access_token",
+      "oauth_token"
+    ]
+  }
+}

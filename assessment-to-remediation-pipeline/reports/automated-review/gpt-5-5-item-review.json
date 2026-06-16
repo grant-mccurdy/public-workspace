@@ -1,0 +1,591 @@
+{
+  "generated_at": "not_recorded_for_reproducible_offline_review",
+  "model": "gpt-5.5",
+  "model_label": "GPT-5.5",
+  "openai_used": true,
+  "review": {
+    "overall_score": 88,
+    "decision": "POLISH_RECOMMENDED",
+    "export_allowed": true,
+    "one_sentence_assessment": "The 36-item public-safe math readiness prototype is mathematically sound and suitable for offline payload inclusion, with only polish-level needs around notation rendering, coverage breadth, and careful non-validation framing.",
+    "strengths": [
+      "All 36 items have coherent stems, answer keys, and rationales based on the provided evidence.",
+      "MCQ distractor feedback generally identifies a specific likely mathematical error for each incorrect option.",
+      "Numeric student-produced-response items use clear exact-answer rules and explanatory general feedback that are sufficient for an MVP with integer answers.",
+      "The two-module structure, 27/9 MCQ-to-numeric split, and domain distribution are internally consistent with the stated prototype design.",
+      "No item-level blocker is evident for public-safe offline portfolio artifacts."
+    ],
+    "form_issues": [
+      "The assessment should continue to be framed as a readiness prototype, not as a validated, standardized, predictive, SAT-equivalent, ACT-equivalent, or AP-equivalent instrument.",
+      "Several stems and rationales use plain-text notation such as sqrt(...), x^2, 2^(x + 1), and <=; this is acceptable for MVP preview but should receive a notation-rendering pass before polished publication.",
+      "Problem-Solving and Data Analysis coverage is coherent but narrow; the current 5-item set lacks scatterplots, statistical claims, sampling, and margin-of-error style evidence.",
+      "Geometry and Trigonometry includes triangles, area, similarity, Pythagorean theorem, and trigonometry, but no explicit circle item.",
+      "The project boundary should remain offline_payload_only; do not present this review as approving a live LMS or Canvas upload."
+    ],
+    "item_reviews": [
+      {
+        "item_id": "ITEM-001",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct solution: x = 5."
+        ],
+        "distractor_feedback_notes": [
+          "Each distractor is tied to a specific inverse-operation or sign error."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload; optional notation polish only."
+      },
+      {
+        "item_id": "ITEM-002",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correctly rewrites 2y - 4x = 10 as y = 2x + 5, so the slope is 2."
+        ],
+        "distractor_feedback_notes": [
+          "Distractor feedback specifically addresses sign, coefficient-scaling, and intercept confusion."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-003",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct unit-rate calculation: 144 \u00f7 3 = 48 miles per hour."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies dividing by the wrong value, subtracting, and multiplying instead of dividing."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-004",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct triangle area calculation: one-half of 14 times 9 equals 63."
+        ],
+        "distractor_feedback_notes": [
+          "Distractor feedback is specific to adding dimensions, omitting the one-half factor, and squaring the base."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-005",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct inequality solution: x < -4 after reversing the sign when dividing by -2."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback clearly identifies inequality-reversal and sign-value errors."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-006",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct simplification for x not equal to 3: (x^2 - 9)/(x - 3) = x + 3."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies wrong cancellation, failure to factor, and reciprocal reversal."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload; consider rendered fraction notation in a polish pass."
+      },
+      {
+        "item_id": "ITEM-007",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct system solution for x: adding equations gives 2x = 14, so x = 7."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback distinguishes y-value confusion, incorrect elimination, and failure to divide by 2."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-008",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct function evaluation: f(6) = 36 - 24 = 12."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies common substitution and order-of-operations errors."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload; optional exponent-rendering polish."
+      },
+      {
+        "item_id": "ITEM-009",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct percent increase: 15% of 80 is 12, new price is 92."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback clearly identifies increase-only, decrease, and dollar-versus-percent errors."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-010",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct numeric answer: substituting y = 8 gives k = 5.",
+          "Accepted exact-answer rule is clear for this integer response."
+        ],
+        "distractor_feedback_notes": [
+          "Not applicable for numeric student-produced response."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-011",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct factorization and solution selection: roots are 2 and 3, smaller solution is 2."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies factor-choice, larger-root, and product-of-roots misconceptions."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-012",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct hypotenuse length: sqrt(9^2 + 12^2) = 15.",
+          "Accepted exact-answer rule is clear for this integer response."
+        ],
+        "distractor_feedback_notes": [
+          "Not applicable for numeric student-produced response."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-013",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct slope calculation: (19 - 7)/(5 - 2) = 4."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies change-in-x, wrong divisor, and change-in-y errors."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-014",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct symbolic comparison: h(x + 1) - h(x) = 4x + 5."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies expansion, finite-difference, and failure-to-subtract errors."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload; consider rendered exponents and function notation in polish pass."
+      },
+      {
+        "item_id": "ITEM-015",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct mean-total reasoning: 6*18 - 5*16 = 28.",
+          "Accepted exact-answer rule is clear for this integer response."
+        ],
+        "distractor_feedback_notes": [
+          "Not applicable for numeric student-produced response."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-016",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct coefficient matching gives a = 5."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies matching the wrong term, ignoring the 2x factor, and constant-sign/factor errors."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-017",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct radical-equation solution: x = 8.",
+          "Accepted exact-answer rule is clear for this integer response."
+        ],
+        "distractor_feedback_notes": [
+          "Not applicable for numeric student-produced response."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload; consider rendering sqrt notation."
+      },
+      {
+        "item_id": "ITEM-018",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct excluded values: denominator x(x - 4) is zero at x = 0 and x = 4."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies missing one zero and incorrectly treating the expression as a difference of squares."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload; consider rendered fraction/exponent notation."
+      },
+      {
+        "item_id": "ITEM-019",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct solution: 4x - 9 = 2x + 7 gives x = 8."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies wrong coefficient use, ignoring a variable term, and stopping at 2x."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-020",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct monomial product: (2x^3)(3x^2) = 6x^5."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies coefficient addition, exponent multiplication, and extra coefficient-factor errors."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload; consider exponent-rendering polish."
+      },
+      {
+        "item_id": "ITEM-021",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct complement probability: 7 of 10 tiles are not blue."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies blue-versus-not-blue, wrong comparison group, and reversed ratio errors."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-022",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct triangle-angle sum: 180 - 42 - 68 = 70 degrees."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies unsupported right-triangle assumption, adding given angles, and ignoring one angle."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-023",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct y-intercept: setting x = 0 gives y = 6."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies coefficient confusion and x-intercept confusion."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-024",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct vertex from vertex form: (4, 7)."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies sign, coordinate-order, and vertical-shift sign errors."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload; optional notation polish."
+      },
+      {
+        "item_id": "ITEM-025",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct slope relationship: a parallel line has slope -3."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies perpendicular-slope confusion, reciprocal/sign confusion, and y-intercept confusion."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-026",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct exponential-equation solution: 32 = 2^5, so x = 4.",
+          "Accepted exact-answer rule is clear for this integer response."
+        ],
+        "distractor_feedback_notes": [
+          "Not applicable for numeric student-produced response."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload; consider exponent-rendering polish."
+      },
+      {
+        "item_id": "ITEM-027",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct area scaling: 36*(5/3)^2 = 100."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies using linear rather than squared scale factor, using an incorrect scale factor, and multiplying by 5."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-028",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct decimal-coefficient solution: 0.25x = 12, so x = 48.",
+          "Accepted exact-answer rule is clear for this integer response."
+        ],
+        "distractor_feedback_notes": [
+          "Not applicable for numeric student-produced response."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-029",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct factorization: x^2 + 7x + 10 = (x + 5)(x + 2)."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies sign error, wrong middle term, and using coefficient/constant directly as factors."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload; consider exponent-rendering polish."
+      },
+      {
+        "item_id": "ITEM-030",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct whole-from-percent solution: 0.30n = 45 gives n = 150.",
+          "Accepted exact-answer rule is clear for this integer response."
+        ],
+        "distractor_feedback_notes": [
+          "Not applicable for numeric student-produced response."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-031",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct interpretation: 8 is the cost per hour, the rate of change."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies fixed-cost, variable, and total-cost-for-8-hours confusions."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-032",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct absolute-value solutions: x = -3 and x = 7."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies negative-branch, sign, and single-solution errors."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload."
+      },
+      {
+        "item_id": "ITEM-033",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct trigonometric and Pythagorean reasoning gives adjacent leg 16.",
+          "Accepted exact-answer rule is clear for this integer response."
+        ],
+        "distractor_feedback_notes": [
+          "Not applicable for numeric student-produced response."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload; consider rendering theta and square-root notation."
+      },
+      {
+        "item_id": "ITEM-034",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct inequality solution: x <= 8."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies operation-direction, unnecessary reversal, and ignoring-the-factor errors."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload; consider rendering <= as \u2264 in polish pass."
+      },
+      {
+        "item_id": "ITEM-035",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct composition evaluation: g(2) = 5 and f(5) = 27.",
+          "Accepted exact-answer rule is clear for this integer response."
+        ],
+        "distractor_feedback_notes": [
+          "Not applicable for numeric student-produced response."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload; optional notation polish."
+      },
+      {
+        "item_id": "ITEM-036",
+        "decision": "automated_pass",
+        "severity": "info",
+        "math_content_notes": [
+          "Correct rational-equation solution: x = 5/2, with x not equal to 1 respected."
+        ],
+        "distractor_feedback_notes": [
+          "Feedback identifies reciprocal final division, sign error after clearing denominator, and failure to divide by 2."
+        ],
+        "public_safety_notes": [
+          "No item-level public-safety blocker evident."
+        ],
+        "recommended_action": "Include in offline payload; consider rendered fraction notation."
+      }
+    ],
+    "improvement_priorities": [
+      "Run a notation-rendering pass for exponents, radicals, fractions, inequalities, and theta before polished portfolio publication.",
+      "Add or swap in at least one data-display/statistical-reasoning item if broader Problem-Solving and Data Analysis representation is desired.",
+      "Consider adding a circle item in a future expansion to round out Geometry and Trigonometry coverage.",
+      "Keep all public-facing language clearly labeled as a prototype readiness diagnostic and avoid validation, standardization, prediction, or official SAT-equivalence claims.",
+      "Maintain the offline_payload_only boundary and do not treat this review as authorization for live LMS deployment."
+    ],
+    "review_gate_flags": [
+      "offline_payload_only",
+      "no_validation_claims",
+      "notation_polish_recommended",
+      "psda_coverage_gap_minor",
+      "geometry_circle_gap_info"
+    ]
+  }
+}
